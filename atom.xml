@@ -4,7 +4,7 @@
   <title><![CDATA[yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2012-07-15T02:04:14+09:00</updated>
+  <updated>2012-07-15T02:20:23+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -12,5 +12,16 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[github pages 初投稿！]]></title>
+    <link href="http://yuyunko.github.com/blog/2012/07/15/first-blog/"/>
+    <updated>2012-07-15T02:05:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2012/07/15/first-blog</id>
+    <content type="html"><![CDATA[<h2>初投稿</h2>
+
+<p>どうかな？</p>
+]]></content>
+  </entry>
   
 </feed>
