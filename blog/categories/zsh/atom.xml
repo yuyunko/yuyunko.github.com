@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: zsh | yuyunko's github pages]]></title>
+  <link href="http://yuyunko.github.com/blog/categories/zsh/atom.xml" rel="self"/>
+  <link href="http://yuyunko.github.com/"/>
+  <updated>2012-07-15T12:29:03+09:00</updated>
+  <id>http://yuyunko.github.com/</id>
+  <author>
+    <name><![CDATA[yuyunko]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[zsh でautojump]]></title>
+    <link href="http://yuyunko.github.com/blog/2012/07/15/zsh-autojump/"/>
+    <updated>2012-07-15T09:09:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2012/07/15/zsh-autojump</id>
+    <content type="html"><![CDATA[<p>zshでautojumpが非常に便利だということを知った。</p>
+
+<p><code>sh
+brew install autojump
+</code></p>
+
+<p>でインストール</p>
+
+<p><div><script src='https://gist.github.com/3114532.js?file='></script>
+<noscript><pre><code>brew install autojump
+</code></pre></noscript></div>
+</p>
+
+<p>を.zshrcに追記</p>
+
+<p><code>sh
+j ディレクトリの一部[tab]
+</code></p>
+
+<p>で補完。</p>
+
+<p>参考</p>
+
+<p><a href="http://blog.glidenote.com/blog/2012/02/29/autojump-zsh/">zsh使いなら効率改善のため知っておきたいAUTOJUMP - Glide Note - グライドノート</a></p>
+]]></content>
+  </entry>
+  
+</feed>

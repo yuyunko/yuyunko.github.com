@@ -4,7 +4,7 @@
   <title><![CDATA[yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2012-07-15T02:20:23+09:00</updated>
+  <updated>2012-07-15T12:29:03+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -12,6 +12,40 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[zsh でautojump]]></title>
+    <link href="http://yuyunko.github.com/blog/2012/07/15/zsh-autojump/"/>
+    <updated>2012-07-15T09:09:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2012/07/15/zsh-autojump</id>
+    <content type="html"><![CDATA[<p>zshでautojumpが非常に便利だということを知った。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>brew install autojump
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>でインストール</p>
+
+<div><script src='https://gist.github.com/3114532.js?file='></script>
+<noscript><pre><code>brew install autojump
+</code></pre></noscript></div>
+
+
+<p>を.zshrcに追記</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>j ディレクトリの一部<span class="o">[</span>tab<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>で補完。</p>
+
+<p>参考</p>
+
+<p><a href="http://blog.glidenote.com/blog/2012/02/29/autojump-zsh/">zsh使いなら効率改善のため知っておきたいAUTOJUMP - Glide Note - グライドノート</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[github pages 初投稿！]]></title>
