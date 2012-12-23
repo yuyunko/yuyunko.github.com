@@ -1,0 +1,472 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>TypeScript on Mac - yuyunko's github pages</title>
+  <meta name="author" content="yuyunko">
+
+  
+  <meta name="description" content="TypeScriptがなにやら楽しそう。
+Macでも導入出来るっぽい。 TypeScriptを導入するには、node.jsが必要。
+今のところzsh使いに最適な方法は nodebrew を使う方法みたい。 curl でパイプにつないで直接入れる方法もあるっぽいけど、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://yuyunko.github.com/blog/2012/12/23/typescript-on-mac/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="yuyunko's github pages" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">yuyunko's github pages</a></h1>
+  
+    <h2>githubでブログ書いてみようかな</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:yuyunko.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">TypeScript on Mac</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-23T08:34:00+09:00" pubdate data-updated="true">Dec 23<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>TypeScriptがなにやら楽しそう。
+Macでも導入出来るっぽい。</p>
+
+<p>TypeScriptを導入するには、node.jsが必要。
+今のところzsh使いに最適な方法は <a href="https://github.com/hokaccha/nodebrew">nodebrew</a> を使う方法みたい。</p>
+
+<p>curl でパイプにつないで直接入れる方法もあるっぽいけど、自分はこういうのは自分の設定ファイルの
+submoduleにいれときたい（忘れる）ので、submodule add してからインストール。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>git submodule add https://github.com/hokaccha/nodebrew.git nodebrew
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>nodebrew
+</span><span class='line'><span class="nv">$ </span>perl nodebrew setup
+</span><span class='line'>fetching nodebrew...
+</span><span class='line'>install nodebrew in <span class="nv">$HOME</span>/.nodebrew
+</span><span class='line'>
+</span><span class='line'><span class="o">========================================</span>
+</span><span class='line'>Add path:
+</span><span class='line'>
+</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/.nodebrew/current/bin:<span class="nv">$PATH</span>
+</span><span class='line'><span class="o">========================================</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>記述に従い、.zshenvに追加。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># nodebrew</span>
+</span><span class='line'><span class="k">if</span> <span class="o">[[</span> -f ~/.nodebrew/nodebrew <span class="o">]]</span>; <span class="k">then</span>
+</span><span class='line'><span class="k">    </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/.nodebrew/current/bin:<span class="nv">$PATH</span>
+</span><span class='line'><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>使い方は、nodebrewコマンドを打てばわかる。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>nodebrew
+</span><span class='line'>nodebrew 0.6.0
+</span><span class='line'>
+</span><span class='line'>Usage:
+</span><span class='line'>    nodebrew <span class="nb">help                       </span>Show this message
+</span><span class='line'>    nodebrew install &lt;version&gt;          Download and install a &lt;version&gt; <span class="o">(</span>compile from <span class="nb">source</span><span class="o">)</span>
+</span><span class='line'>    nodebrew install-binary &lt;version&gt;   Download and install a &lt;version&gt; <span class="o">(</span>binary file<span class="o">)</span>
+</span><span class='line'>    nodebrew uninstall &lt;version&gt;        Uninstall a version
+</span><span class='line'>    nodebrew use &lt;version&gt;              Use &lt;version&gt;
+</span><span class='line'>    nodebrew list                       List installed versions
+</span><span class='line'>    nodebrew ls                         Alias <span class="k">for</span> <span class="sb">`</span>list<span class="sb">`</span>
+</span><span class='line'>    nodebrew ls-remote                  List remote versions
+</span><span class='line'>    nodebrew ls-all                     List remote and installed versions
+</span><span class='line'>    nodebrew <span class="nb">alias</span> &lt;key&gt; &lt;version&gt;      Set <span class="nb">alias </span>to version
+</span><span class='line'>    nodebrew <span class="nb">unalias</span> &lt;key&gt;              Remove <span class="nb">alias</span>
+</span><span class='line'><span class="nb">    </span>nodebrew clean &lt;version&gt; | all      Remove <span class="nb">source </span>file
+</span><span class='line'>    nodebrew selfupdate                 Update nodebrew
+</span><span class='line'>    nodebrew migrate-package &lt;version&gt;  Install global NPM packages contained in &lt;version&gt; to current version
+</span><span class='line'>
+</span><span class='line'>Example:
+</span><span class='line'>    nodebrew install v0.6.0     Install a specific version number
+</span><span class='line'>    nodebrew use v0.6.0         Use a specific version number
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最新をインストール</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>nodebrew install latest
+</span><span class='line'><span class="nv">$ </span>nodebrew list
+</span><span class='line'>v0.9.4
+</span><span class='line'>
+</span><span class='line'>current: none
+</span><span class='line'><span class="nv">$ </span>nodebrew use v0.9.4
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これでnpmコマンドも使用出来るようになっているので、npmでTypeScriptをインストール</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>npm install -g typescript
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>TypeScript -> JavaScriptの変換</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>tsc
+</span><span class='line'>Syntax:   tsc <span class="o">[</span>options<span class="o">]</span> <span class="o">[</span>file ..<span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>Examples: tsc hello.ts
+</span><span class='line'>          tsc --out foo.js foo.ts
+</span><span class='line'>          tsc @args.txt
+</span><span class='line'>
+</span><span class='line'>Options:
+</span><span class='line'>  -c, --comments  Emit comments to output
+</span><span class='line'>  --declaration   Generates corresponding .d.ts file
+</span><span class='line'>  -e, --exec      Execute the script after compilation
+</span><span class='line'>  -h, --help      Print this message
+</span><span class='line'>  --module KIND   Specify module code generation: <span class="s2">&quot;commonjs&quot;</span> <span class="o">(</span>default<span class="o">)</span> or <span class="s2">&quot;amd&quot;</span>
+</span><span class='line'>  --nolib         Do not include a default lib.d.ts with global declarations
+</span><span class='line'>  --out FILE      Concatenate and emit output to single file
+</span><span class='line'>  --sourcemap     Generates corresponding .map file
+</span><span class='line'>  --target VER    Specify ECMAScript target version: <span class="s2">&quot;ES3&quot;</span> <span class="o">(</span>default<span class="o">)</span>, or <span class="s2">&quot;ES5&quot;</span>
+</span><span class='line'>  -w, --watch     Watch output files
+</span><span class='line'>  @&lt;file&gt;         Insert <span class="nb">command </span>line options and files from a file.
+</span><span class='line'>
+</span><span class='line'><span class="nv">$ </span>tsc test.ts
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上記で同じディレクトリにtest.jsが出来る。</p>
+
+<p>wsh の定義ファイル(d.ts)が欲しい</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">yuyunko</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-23T08:34:00+09:00" pubdate data-updated="true">Dec 23<span>rd</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/typescript-mac-zsh/'>typescript,mac,zsh</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://yuyunko.github.com/blog/2012/12/23/typescript-on-mac/" data-via="r_y_y_k_m" data-counturl="http://yuyunko.github.com/blog/2012/12/23/typescript-on-mac/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/08/03/jscript/" title="Previous Post: バッチファイルとしてJScriptを実行">&laquo; バッチファイルとしてJScriptを実行</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/23/typescript-on-mac/">TypeScript on Mac</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/03/jscript/">バッチファイルとしてJScriptを実行</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/15/zsh-autojump/">zsh でautojump</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/15/first-blog/">github pages 初投稿！</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/yuyunko">@yuyunko</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'yuyunko',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("r_y_y_k_m", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/r_y_y_k_m" class="twitter-follow-button" data-show-count="false">Follow @r_y_y_k_m</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - yuyunko -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yuyunko';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://yuyunko.github.com/blog/2012/12/23/typescript-on-mac/';
+        var disqus_url = 'http://yuyunko.github.com/blog/2012/12/23/typescript-on-mac/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <title><![CDATA[yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2012-08-04T09:32:53+09:00</updated>
+  <updated>2012-12-23T09:20:46+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -12,6 +12,184 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[TypeScript on Mac]]></title>
+    <link href="http://yuyunko.github.com/blog/2012/12/23/typescript-on-mac/"/>
+    <updated>2012-12-23T08:34:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2012/12/23/typescript-on-mac</id>
+    <content type="html"><![CDATA[<p>TypeScriptがなにやら楽しそう。
+Macでも導入出来るっぽい。</p>
+
+<p>TypeScriptを導入するには、node.jsが必要。
+今のところzsh使いに最適な方法は <a href="https://github.com/hokaccha/nodebrew">nodebrew</a> を使う方法みたい。</p>
+
+<p>curl でパイプにつないで直接入れる方法もあるっぽいけど、自分はこういうのは自分の設定ファイルの
+submoduleにいれときたい（忘れる）ので、submodule add してからインストール。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>git submodule add https://github.com/hokaccha/nodebrew.git nodebrew
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>nodebrew
+</span><span class='line'><span class="nv">$ </span>perl nodebrew setup
+</span><span class='line'>fetching nodebrew...
+</span><span class='line'>install nodebrew in <span class="nv">$HOME</span>/.nodebrew
+</span><span class='line'>
+</span><span class='line'><span class="o">========================================</span>
+</span><span class='line'>Add path:
+</span><span class='line'>
+</span><span class='line'><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/.nodebrew/current/bin:<span class="nv">$PATH</span>
+</span><span class='line'><span class="o">========================================</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>記述に従い、.zshenvに追加。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># nodebrew</span>
+</span><span class='line'><span class="k">if</span> <span class="o">[[</span> -f ~/.nodebrew/nodebrew <span class="o">]]</span>; <span class="k">then</span>
+</span><span class='line'><span class="k">    </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/.nodebrew/current/bin:<span class="nv">$PATH</span>
+</span><span class='line'><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>使い方は、nodebrewコマンドを打てばわかる。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>nodebrew
+</span><span class='line'>nodebrew 0.6.0
+</span><span class='line'>
+</span><span class='line'>Usage:
+</span><span class='line'>    nodebrew <span class="nb">help                       </span>Show this message
+</span><span class='line'>    nodebrew install &lt;version&gt;          Download and install a &lt;version&gt; <span class="o">(</span>compile from <span class="nb">source</span><span class="o">)</span>
+</span><span class='line'>    nodebrew install-binary &lt;version&gt;   Download and install a &lt;version&gt; <span class="o">(</span>binary file<span class="o">)</span>
+</span><span class='line'>    nodebrew uninstall &lt;version&gt;        Uninstall a version
+</span><span class='line'>    nodebrew use &lt;version&gt;              Use &lt;version&gt;
+</span><span class='line'>    nodebrew list                       List installed versions
+</span><span class='line'>    nodebrew ls                         Alias <span class="k">for</span> <span class="sb">`</span>list<span class="sb">`</span>
+</span><span class='line'>    nodebrew ls-remote                  List remote versions
+</span><span class='line'>    nodebrew ls-all                     List remote and installed versions
+</span><span class='line'>    nodebrew <span class="nb">alias</span> &lt;key&gt; &lt;version&gt;      Set <span class="nb">alias </span>to version
+</span><span class='line'>    nodebrew <span class="nb">unalias</span> &lt;key&gt;              Remove <span class="nb">alias</span>
+</span><span class='line'><span class="nb">    </span>nodebrew clean &lt;version&gt; | all      Remove <span class="nb">source </span>file
+</span><span class='line'>    nodebrew selfupdate                 Update nodebrew
+</span><span class='line'>    nodebrew migrate-package &lt;version&gt;  Install global NPM packages contained in &lt;version&gt; to current version
+</span><span class='line'>
+</span><span class='line'>Example:
+</span><span class='line'>    nodebrew install v0.6.0     Install a specific version number
+</span><span class='line'>    nodebrew use v0.6.0         Use a specific version number
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最新をインストール</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>nodebrew install latest
+</span><span class='line'><span class="nv">$ </span>nodebrew list
+</span><span class='line'>v0.9.4
+</span><span class='line'>
+</span><span class='line'>current: none
+</span><span class='line'><span class="nv">$ </span>nodebrew use v0.9.4
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これでnpmコマンドも使用出来るようになっているので、npmでTypeScriptをインストール</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>npm install -g typescript
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>TypeScript -> JavaScriptの変換</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>tsc
+</span><span class='line'>Syntax:   tsc <span class="o">[</span>options<span class="o">]</span> <span class="o">[</span>file ..<span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>Examples: tsc hello.ts
+</span><span class='line'>          tsc --out foo.js foo.ts
+</span><span class='line'>          tsc @args.txt
+</span><span class='line'>
+</span><span class='line'>Options:
+</span><span class='line'>  -c, --comments  Emit comments to output
+</span><span class='line'>  --declaration   Generates corresponding .d.ts file
+</span><span class='line'>  -e, --exec      Execute the script after compilation
+</span><span class='line'>  -h, --help      Print this message
+</span><span class='line'>  --module KIND   Specify module code generation: <span class="s2">&quot;commonjs&quot;</span> <span class="o">(</span>default<span class="o">)</span> or <span class="s2">&quot;amd&quot;</span>
+</span><span class='line'>  --nolib         Do not include a default lib.d.ts with global declarations
+</span><span class='line'>  --out FILE      Concatenate and emit output to single file
+</span><span class='line'>  --sourcemap     Generates corresponding .map file
+</span><span class='line'>  --target VER    Specify ECMAScript target version: <span class="s2">&quot;ES3&quot;</span> <span class="o">(</span>default<span class="o">)</span>, or <span class="s2">&quot;ES5&quot;</span>
+</span><span class='line'>  -w, --watch     Watch output files
+</span><span class='line'>  @&lt;file&gt;         Insert <span class="nb">command </span>line options and files from a file.
+</span><span class='line'>
+</span><span class='line'><span class="nv">$ </span>tsc test.ts
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上記で同じディレクトリにtest.jsが出来る。</p>
+
+<p>wsh の定義ファイル(d.ts)が欲しい</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[バッチファイルとしてJScriptを実行]]></title>
