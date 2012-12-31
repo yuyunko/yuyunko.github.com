@@ -5,11 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: typescript,mac,zsh - yuyunko's github pages</title>
+  <title>octopress theme - yuyunko's github pages</title>
   <meta name="author" content="yuyunko">
 
   
-  <meta name="description" content="Category: typescript,mac,zsh">
+  <meta name="description" content="octopressのテーマをデフォルトから変更する手順 使用出来るテーマ一覧は以下に記載 3rd Party Octopress Themes · imathis/octopress Wiki 今回はここにある roberto/oct2-orange · GitHub を使用。 1
+2
+3
+% &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://yuyunko.github.comblog/categories/typescript-mac-zsh/">
+  <link rel="canonical" href="http://yuyunko.github.com/blog/2012/12/31/octopress-theme/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
    <link href="/stylesheets/data-table.css" media="screen, projection" rel="stylesheet" type="text/css" />
@@ -62,36 +65,123 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Typescript,mac,zsh</h1>
+    
+      <h1 class="entry-title">Octopress Theme</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-31T15:47:00+09:00" pubdate data-updated="true">Dec 31<span>st</span>, 2012</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>octopressのテーマをデフォルトから変更する手順</p>
 
-  
-  <h2>2012</h2>
+<p>使用出来るテーマ一覧は以下に記載</p>
 
-<article>
-  
-<h1><a href="/blog/2012/12/23/typescript-on-mac/">TypeScript on Mac</a></h1>
-<time datetime="2012-12-23T08:34:00+09:00" pubdate><span class='month'>Dec</span> <span class='day'>23</span> <span class='year'>2012</span></time>
+<p><a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">3rd Party Octopress Themes · imathis/octopress Wiki</a></p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/typescript-mac-zsh/'>typescript,mac,zsh</a></span>
-</footer>
+<p>今回はここにある</p>
+
+<p><a href="https://github.com/roberto/oct2-orange">roberto/oct2-orange · GitHub</a></p>
+
+<p>を使用。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>% <span class="nb">cd </span>octopress
+</span><span class='line'>% git clone git://github.com/roberto/oct2-orange.git .themes/oct2-orange
+</span><span class='line'>% rake install<span class="se">\[</span><span class="s1">&#39;oct2-orange&#39;</span><span class="se">\]</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-</article>
+<p>後は、_config.ymlに asides/nav.html を追加。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>default_asides: <span class="o">[</span>asides/nav.html, asides/recent_posts.html ....
+</span></code></pre></td></tr></table></div></figure>
+
+
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">yuyunko</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-31T15:47:00+09:00" pubdate data-updated="true">Dec 31<span>st</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/octopress-git-theme/'>octopress,git,theme</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://yuyunko.github.com/blog/2012/12/31/octopress-theme/" data-via="r_y_y_k_m" data-counturl="http://yuyunko.github.com/blog/2012/12/31/octopress-theme/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/12/31/oh-my-zsh/" title="Previous Post: oh-my-zsh">&laquo; oh-my-zsh</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -181,7 +271,10 @@
       var disqus_shortname = 'yuyunko';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://yuyunko.github.com/blog/2012/12/31/octopress-theme/';
+        var disqus_url = 'http://yuyunko.github.com/blog/2012/12/31/octopress-theme/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

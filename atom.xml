@@ -4,7 +4,7 @@
   <title><![CDATA[yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2012-12-31T15:10:17+09:00</updated>
+  <updated>2012-12-31T16:30:44+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -12,6 +12,43 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[octopress theme]]></title>
+    <link href="http://yuyunko.github.com/blog/2012/12/31/octopress-theme/"/>
+    <updated>2012-12-31T15:47:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2012/12/31/octopress-theme</id>
+    <content type="html"><![CDATA[<p>octopressのテーマをデフォルトから変更する手順</p>
+
+<p>使用出来るテーマ一覧は以下に記載</p>
+
+<p><a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">3rd Party Octopress Themes · imathis/octopress Wiki</a></p>
+
+<p>今回はここにある</p>
+
+<p><a href="https://github.com/roberto/oct2-orange">roberto/oct2-orange · GitHub</a></p>
+
+<p>を使用。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>% <span class="nb">cd </span>octopress
+</span><span class='line'>% git clone git://github.com/roberto/oct2-orange.git .themes/oct2-orange
+</span><span class='line'>% rake install<span class="se">\[</span><span class="s1">&#39;oct2-orange&#39;</span><span class="se">\]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>後は、_config.ymlに asides/nav.html を追加。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>default_asides: <span class="o">[</span>asides/nav.html, asides/recent_posts.html ....
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[oh-my-zsh]]></title>
@@ -133,6 +170,12 @@
 
 <p>僕はデフォルトの&#8221;robbyrussell&#8221;のテーマに<a href="https://github.com/clear-code/zsh.d">clear-code/zsh.d · GitHub</a>さんの
 設定をプラスさせて貰ったようなのを利用。</p>
+
+<div><script src='https://gist.github.com/.js?file=4418029'></script>
+<noscript><pre><code>&lt;html&gt;&lt;body&gt;You are being &lt;a href=&quot;https://github.com/gist//4418029&quot;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;</code></pre></noscript></div>
+
+
+
 ]]></content>
   </entry>
   

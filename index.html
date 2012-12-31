@@ -9,8 +9,10 @@
   <meta name="author" content="yuyunko">
 
   
-  <meta name="description" content="年末大掃除、zshの設定をoh-my-zshを基準に設定し直した。 oh-my-zshの導入 まず、自分でカスタマイズ出来るようにgithub上で、以下をフォーク robbyrussell/oh-my-zsh · GitHub フォークした自分のoh-my-zshをclone
-( &hellip;">
+  <meta name="description" content="octopressのテーマをデフォルトから変更する手順 使用出来るテーマ一覧は以下に記載 3rd Party Octopress Themes · imathis/octopress Wiki 今回はここにある roberto/oct2-orange · GitHub を使用。 1
+2
+3
+% &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +66,70 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/31/octopress-theme/">Octopress Theme</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-31T15:47:00+09:00" pubdate data-updated="true">Dec 31<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>octopressのテーマをデフォルトから変更する手順</p>
+
+<p>使用出来るテーマ一覧は以下に記載</p>
+
+<p><a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">3rd Party Octopress Themes · imathis/octopress Wiki</a></p>
+
+<p>今回はここにある</p>
+
+<p><a href="https://github.com/roberto/oct2-orange">roberto/oct2-orange · GitHub</a></p>
+
+<p>を使用。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>% <span class="nb">cd </span>octopress
+</span><span class='line'>% git clone git://github.com/roberto/oct2-orange.git .themes/oct2-orange
+</span><span class='line'>% rake install<span class="se">\[</span><span class="s1">&#39;oct2-orange&#39;</span><span class="se">\]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>後は、_config.ymlに asides/nav.html を追加。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>default_asides: <span class="o">[</span>asides/nav.html, asides/recent_posts.html ....
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -208,6 +274,12 @@
 
 <p>僕はデフォルトの&#8221;robbyrussell&#8221;のテーマに<a href="https://github.com/clear-code/zsh.d">clear-code/zsh.d · GitHub</a>さんの
 設定をプラスさせて貰ったようなのを利用。</p>
+
+<div><script src='https://gist.github.com/.js?file=4418029'></script>
+<noscript><pre><code>&lt;html&gt;&lt;body&gt;You are being &lt;a href=&quot;https://github.com/gist//4418029&quot;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;</code></pre></noscript></div>
+
+
+
 </div>
   
   
@@ -977,6 +1049,10 @@ submoduleにいれときたい（忘れる）ので、submodule add してから
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/31/octopress-theme/">octopress theme</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/31/oh-my-zsh/">oh-my-zsh</a>
       </li>
     
@@ -992,42 +1068,8 @@ submoduleにいれときたい（忘れる）ので、submodule add してから
         <a href="/blog/2012/07/15/zsh-autojump/">zsh でautojump</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2012/07/15/first-blog/">github pages 初投稿！</a>
-      </li>
-    
   </ul>
 </section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  
-  <a href="https://github.com/yuyunko">@yuyunko</a> on GitHub
-  
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'yuyunko',
-            count: 0,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
 
 <section>
   <h1>Latest Tweets</h1>
@@ -1046,6 +1088,15 @@ submoduleにいれときたい（忘れる）ので、submodule add してから
 </section>
 
 
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/i.xxxxxxxxxxxxx.13@gmail.com?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
 
 
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: zsh,oh-my-zsh | yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/blog/categories/zsh-oh-my-zsh/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2012-12-31T15:10:17+09:00</updated>
+  <updated>2012-12-31T16:30:44+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -104,6 +104,10 @@
 
 <p>僕はデフォルトの"robbyrussell"のテーマに<a href="https://github.com/clear-code/zsh.d">clear-code/zsh.d · GitHub</a>さんの
 設定をプラスさせて貰ったようなのを利用。</p>
+
+<p><div><script src='https://gist.github.com/.js?file=4418029'></script>
+<noscript><pre><code>&lt;html&gt;&lt;body&gt;You are being &lt;a href=&quot;https://github.com/gist//4418029&quot;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;</code></pre></noscript></div>
+</p>
 ]]></content>
   </entry>
   

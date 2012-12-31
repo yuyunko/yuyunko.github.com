@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: octopress,git,theme | yuyunko's github pages]]></title>
+  <link href="http://yuyunko.github.com/blog/categories/octopress-git-theme/atom.xml" rel="self"/>
+  <link href="http://yuyunko.github.com/"/>
+  <updated>2012-12-31T16:30:44+09:00</updated>
+  <id>http://yuyunko.github.com/</id>
+  <author>
+    <name><![CDATA[yuyunko]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[octopress theme]]></title>
+    <link href="http://yuyunko.github.com/blog/2012/12/31/octopress-theme/"/>
+    <updated>2012-12-31T15:47:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2012/12/31/octopress-theme</id>
+    <content type="html"><![CDATA[<p>octopressのテーマをデフォルトから変更する手順</p>
+
+<p>使用出来るテーマ一覧は以下に記載</p>
+
+<p><a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">3rd Party Octopress Themes · imathis/octopress Wiki</a></p>
+
+<p>今回はここにある</p>
+
+<p><a href="https://github.com/roberto/oct2-orange">roberto/oct2-orange · GitHub</a></p>
+
+<p>を使用。</p>
+
+<p><code>sh
+% cd octopress
+% git clone git://github.com/roberto/oct2-orange.git .themes/oct2-orange
+% rake install\['oct2-orange'\]
+</code></p>
+
+<p>後は、_config.ymlに asides/nav.html を追加。
+<code>sh
+default_asides: [asides/nav.html, asides/recent_posts.html ....
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>
