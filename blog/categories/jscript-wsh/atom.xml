@@ -4,11 +4,11 @@
   <title><![CDATA[Category: JScript,wsh | yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/blog/categories/jscript-wsh/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2012-12-31T18:35:42+09:00</updated>
+  <updated>2012-12-31T23:13:43+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
-    
+    <email><![CDATA[i.xxxxxxxxxxxxx.13@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
@@ -18,210 +18,202 @@
     <link href="http://yuyunko.github.com/blog/2012/08/03/jscript/"/>
     <updated>2012-08-03T00:55:00+09:00</updated>
     <id>http://yuyunko.github.com/blog/2012/08/03/jscript</id>
-    <content type="html"><![CDATA[<p>```js
-@if(0)==(0) echo off</p>
+    <content type="html"><![CDATA[<p><div><script src='https://gist.github.com/4418954.js'></script>
+<noscript><pre><code>@if(0)==(0) echo off
+    CScript.exe //NoLogo //E:JScript &quot;%~f0&quot; %*
+goto :EOF
+@end
 
-<pre><code>CScript.exe //NoLogo //E:JScript "%~f0" %*
-</code></pre>
+//{{{ ファイル入出力用関数
+function FileSystem() {
 
-<p>goto :EOF
-@end</p>
+    //{{{ member
+    var fso = new ActiveXObject(&quot;Scripting.FileSystemObject&quot;);
+    //}}}
 
-<p>//{{{ ファイル入出力用関数
-function FileSystem() {</p>
+    return {
+        //{{{ getFso
+        getFso : function () {
+            return fso;
+        },//}}}
 
-<pre><code>//{{{ member
-var fso = new ActiveXObject("Scripting.FileSystemObject");
-//}}}
-
-return {
-    //{{{ getFso
-    getFso : function () {
-        return fso;
-    },//}}}
-
-    //{{{ withReadFile:ファイル入力
-    withReadFile : function (filename, func) {
-        var file = fso.OpenTextFile(filename, 1, false);
-        try {
-            func(file);
-        } finally {
-            file.Close();
-        }
-    },//}}}
-
-    //{{{ withEachLine:ファイル行入力
-    withEachLine : function (filename, func) {
-        withReadFile(filename, function (file) {
-            while (!file.AtEndOfStream) {
-                func(file.ReadLine());
-            }
-        });
-    },//}}}
-
-    //{{{ withWriteFile:ファイル出力
-    withWriteFile : function (filename, func) {
-        var file = fso.OpenTextFile(filename, 2, true);
-        try {
-            func(file);
-        } finally {
-            file.Close();
-        }
-    },//}}}
-
-    //{{{ withEachFileName:ファイル名一覧
-    withEachFileName : function (path, subdir, func) {
-        var folder = fso.GetFolder(path);
-        var files = new Enumerator(folder.Files);
-        while (!files.atEnd()) {
-            func(new String(files.item()));
-            files.moveNext();
-        }
-        if (subdir) {
-            var folders = new Enumerator(folder.SubFolders);
-            while (!folders.atEnd()) {
-                arguments.callee(folders.item(), subdir, func);
-                folders.moveNext();
-            }
-        }
-    },//}}}
-
-    //{{{ forceCreateFolders:フォルダ（ディレクトリ）階層の作成
-    forceCreateFolders : function (path) {
-        if (path.length &gt; 0 &amp;&amp; !fso.FolderExists(path)) {
-            forceCreateFolders(fso.GetParentFolderName(path));
-            fso.CreateFolder(path);
-        }
-    }//}}}
-};
-</code></pre>
-
-<p>}
-//}}}</p>
-
-<p>//{{{ EXCEL用関数
-function ExcelSystem() {</p>
-
-<pre><code>//{{{ member
-// 表示属性指定用の定数
-var Excel = {
-    // 文字位置
-    xlGeneral : 1,
-    xlLeft : -4131,
-    xlCenter : -4108,
-    xlRight : -4152,
-    xlTop : -4160,
-    xlBottom : -4107,
-    xlJustify : -4130,
-    xlDistributed : -4117,
-    // 罫線の位置
-    xlEdgeLeft : 7,
-    xlEdgeTop : 8,
-    xlEdgeRight : 10,
-    xlEdgeBottom : 9,
-    // 罫線の種類
-    xlContinuous : 1,
-    xlDash : -4115,
-    xlDashDot : 4,
-    xlDashDotDot : 5,
-    xlDot : -4118,
-    xlDouble : -4119,
-    // 罫線の太さ
-    xlHairLine : 1,
-    xlThin : 2,
-    xlThick : 4,
-    xlMedium : -4138
-};
-//}}}
-
-return {
-    //{{{ withExcel:EXCEL起動
-    withExcel : function (visible, func) {
-        var excel = new ActiveXObject("Excel.Application");
-        excel.Visible = visible;
-        excel.DisplayAlerts = false;
-        try {
-            func(excel);
-        } finally {
-            excel.Quit();
-        }
-    },//}}}
-
-    //{{{ withWorkbook:EXCELワークブック操作
-    withWorkbook : function (filename, visible, readonly, func) {
-        ExcelSystem().withExcel(visible, function (excel) {
-            var workbook = excel.Workbooks.Open(filename, 0, readonly);
+        //{{{ withReadFile:ファイル入力
+        withReadFile : function (filename, func) {
+            var file = fso.OpenTextFile(filename, 1, false);
             try {
-                func(workbook);
+                func(file);
             } finally {
-                workbook.Close();
+                file.Close();
             }
-        });
-    },//}}}
+        },//}}}
 
-    //{{{ withNewWorkbook:EXCEL新規ワークブック操作
-    withNewWorkbook : function (filename, visible, func) {
-        withExcel(visible, function (excel) {
-            var workbook = excel.Workbooks.Add();
+        //{{{ withEachLine:ファイル行入力
+        withEachLine : function (filename, func) {
+            withReadFile(filename, function (file) {
+                while (!file.AtEndOfStream) {
+                    func(file.ReadLine());
+                }
+            });
+        },//}}}
+
+        //{{{ withWriteFile:ファイル出力
+        withWriteFile : function (filename, func) {
+            var file = fso.OpenTextFile(filename, 2, true);
             try {
+                func(file);
+            } finally {
+                file.Close();
+            }
+        },//}}}
+
+        //{{{ withEachFileName:ファイル名一覧
+        withEachFileName : function (path, subdir, func) {
+            var folder = fso.GetFolder(path);
+            var files = new Enumerator(folder.Files);
+            while (!files.atEnd()) {
+                func(new String(files.item()));
+                files.moveNext();
+            }
+            if (subdir) {
+                var folders = new Enumerator(folder.SubFolders);
+                while (!folders.atEnd()) {
+                    arguments.callee(folders.item(), subdir, func);
+                    folders.moveNext();
+                }
+            }
+        },//}}}
+
+        //{{{ forceCreateFolders:フォルダ（ディレクトリ）階層の作成
+        forceCreateFolders : function (path) {
+            if (path.length &gt; 0 &amp;&amp; !fso.FolderExists(path)) {
+                forceCreateFolders(fso.GetParentFolderName(path));
+                fso.CreateFolder(path);
+            }
+        }//}}}
+    };
+}
+//}}}
+
+//{{{ EXCEL用関数
+function ExcelSystem() {
+
+    //{{{ member
+    // 表示属性指定用の定数
+    var Excel = {
+        // 文字位置
+        xlGeneral : 1,
+        xlLeft : -4131,
+        xlCenter : -4108,
+        xlRight : -4152,
+        xlTop : -4160,
+        xlBottom : -4107,
+        xlJustify : -4130,
+        xlDistributed : -4117,
+        // 罫線の位置
+        xlEdgeLeft : 7,
+        xlEdgeTop : 8,
+        xlEdgeRight : 10,
+        xlEdgeBottom : 9,
+        // 罫線の種類
+        xlContinuous : 1,
+        xlDash : -4115,
+        xlDashDot : 4,
+        xlDashDotDot : 5,
+        xlDot : -4118,
+        xlDouble : -4119,
+        // 罫線の太さ
+        xlHairLine : 1,
+        xlThin : 2,
+        xlThick : 4,
+        xlMedium : -4138
+    };
+    //}}}
+
+    return {
+        //{{{ withExcel:EXCEL起動
+        withExcel : function (visible, func) {
+            var excel = new ActiveXObject(&quot;Excel.Application&quot;);
+            excel.Visible = visible;
+            excel.DisplayAlerts = false;
+            try {
+                func(excel);
+            } finally {
+                excel.Quit();
+            }
+        },//}}}
+
+        //{{{ withWorkbook:EXCELワークブック操作
+        withWorkbook : function (filename, visible, readonly, func) {
+            ExcelSystem().withExcel(visible, function (excel) {
+                var workbook = excel.Workbooks.Open(filename, 0, readonly);
                 try {
                     func(workbook);
                 } finally {
-                    workbook.SaveAs(filename);
+                    workbook.Close();
                 }
-            } finally {
-                workbook.Close();
+            });
+        },//}}}
+
+        //{{{ withNewWorkbook:EXCEL新規ワークブック操作
+        withNewWorkbook : function (filename, visible, func) {
+            withExcel(visible, function (excel) {
+                var workbook = excel.Workbooks.Add();
+                try {
+                    try {
+                        func(workbook);
+                    } finally {
+                        workbook.SaveAs(filename);
+                    }
+                } finally {
+                    workbook.Close();
+                }
+            });
+        },//}}}
+
+        //{{{ setCellAttr:セル装飾指定
+        setCellAttr : function (cell, value, attributes) {
+            if (attributes.width) {
+                cell.ColumnWidth = attributes.width;
             }
-        });
-    },//}}}
-
-    //{{{ setCellAttr:セル装飾指定
-    setCellAttr : function (cell, value, attributes) {
-        if (attributes.width) {
-            cell.ColumnWidth = attributes.width;
-        }
-        if (attributes.height) {
-            cell.RowHeight = attributes.height;
-        }
-        if (attributes.font) {
-            cell.Font.Name = attributes.font;
-        }
-        if (attributes.fontSize) {
-            cell.Font.Size = attributes.fontSize;
-        }
-        if (attributes.fontStyle) {
-            cell.Font.FontStyle = attributes.fontStyle;
-        }
-        if (attributes.format) {
-            cell.NumberFormatLocal = attributes.format;
-        }
-        if (attributes.align) {
-            cell.HorizontalAlignment = attributes.align;
-        }
-        if (attributes.valign) {
-            cell.VerticalAlignment = attributes.valign;
-        }
-        if (attributes.borders) {
-            for (var i = 0; i &lt; attributes.borders.length; i++) {
-                WScript.Echo(i);
-                var border = cell.Borders(attributes.borders[i]);
-                WScript.Echo(border.Weight);
-                border.Weight = Excel.xlThin;
-                border.LineStyle = Excel.xlContinuous;
+            if (attributes.height) {
+                cell.RowHeight = attributes.height;
             }
-        }
-        if (value) {
-            cell.value = value;
-        }
-    }//}}}
-};
-</code></pre>
+            if (attributes.font) {
+                cell.Font.Name = attributes.font;
+            }
+            if (attributes.fontSize) {
+                cell.Font.Size = attributes.fontSize;
+            }
+            if (attributes.fontStyle) {
+                cell.Font.FontStyle = attributes.fontStyle;
+            }
+            if (attributes.format) {
+                cell.NumberFormatLocal = attributes.format;
+            }
+            if (attributes.align) {
+                cell.HorizontalAlignment = attributes.align;
+            }
+            if (attributes.valign) {
+                cell.VerticalAlignment = attributes.valign;
+            }
+            if (attributes.borders) {
+                for (var i = 0; i &lt; attributes.borders.length; i++) {
+                    WScript.Echo(i);
+                    var border = cell.Borders(attributes.borders[i]);
+                    WScript.Echo(border.Weight);
+                    border.Weight = Excel.xlThin;
+                    border.LineStyle = Excel.xlContinuous;
+                }
+            }
+            if (value) {
+                cell.value = value;
+            }
+        }//}}}
+    };
+}
+//}}}</code></pre></noscript></div>
 
-<p>}
-//}}}
-```</p>
-
-<p>1L〜4LまでがJScriptをバッチファイルとして実行するイディオム</p>
+1L〜4LまでがJScriptをバッチファイルとして実行するイディオム</p>
 
 <p>6L〜はファイルを扱う時用、その後はExcelを扱う時用の関数。</p>
 

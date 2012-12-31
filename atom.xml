@@ -4,11 +4,11 @@
   <title><![CDATA[yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2012-12-31T18:35:42+09:00</updated>
+  <updated>2012-12-31T23:13:43+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
-    
+    <email><![CDATA[i.xxxxxxxxxxxxx.13@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
@@ -168,12 +168,88 @@
 <p>.oh-my-zsh/themes に自分で「mytheme.zsh-theme」という拡張子で設定ファイルを記述し、
 上記設定ファイルに「ZSH_THEME=mytheme」とすると、読み込んでくれる。</p>
 
-<div><script src='https://gist.github.com/.js?file=4418029'></script>
-<noscript><pre><code>&lt;html&gt;&lt;body&gt;You are being &lt;a href=&quot;https://github.com/gist//4418029&quot;&gt;redirected&lt;/a&gt;.&lt;/body&gt;&lt;/html&gt;</code></pre></noscript></div>
-
-
 <p>僕はデフォルトの&#8221;robbyrussell&#8221;のテーマに<a href="https://github.com/clear-code/zsh.d">clear-code/zsh.d · GitHub</a>さんの
 設定をプラスさせて貰ったようなのを利用。</p>
+
+<div><script src='https://gist.github.com/4418029.js'></script>
+<noscript><pre><code>## 256色生成用便利関数
+### red: 0-5
+### green: 0-5
+### blue: 0-5
+color256()
+{
+    local red=$1; shift
+    local green=$2; shift
+    local blue=$3; shift
+
+    echo -n $[$red * 36 + $green * 6 + $blue + 16]
+}
+
+fg256()
+{
+    echo -n $'\e[38;5;'$(color256 &quot;$@&quot;)&quot;m&quot;
+}
+
+bg256()
+{
+    echo -n $'\e[48;5;'$(color256 &quot;$@&quot;)&quot;m&quot;
+}
+### プロンプトバーの左側
+### %{%B%}...%{%b%}: 「...」を太字にする。
+### %{%F{cyan}%}...%{%f%}: 「...」をシアン色の文字にする。
+### %n: ユーザ名
+### %m: ホスト名（完全なホスト名ではなくて短いホスト名）
+### %{%B%F{white}%(?.%K{green}.%K{red})%}%?%{%f%k%b%}:
+### 最後に実行したコマンドが正常終了していれば
+### 太字で白文字で緑背景にして異常終了していれば
+### 太字で白文字で赤背景にする。
+### %{%F{white}%}: 白文字にする。
+### %(x.true-text.false-text): xが真のときはtrue-textになり
+### 偽のときはfalse-textになる。
+### ?: 最後に実行したコマンドの終了ステータスが0のときに真になる。
+### %K{green}: 緑景色にする。
+### %K{red}: 赤景色を赤にする。
+### %?: 最後に実行したコマンドの終了ステータス
+### %{%k%}: 背景色を元に戻す。
+### %{%f%}: 文字の色を元に戻す。
+### %{%b%}: 太字を元に戻す。
+### %D{%Y/%m/%d %H:%M}: 日付。「年/月/日 時:分」というフォーマット。
+prompt_bar_left_self=&quot;(%{%B%}%n%{%b%}%{%F{cyan}%}@%{%f%}%{%B%}%m%{%b%})&quot;
+prompt_bar_left_status=&quot;(%{%B%F{white}%(?.%K{green}.%K{red})%}%?%{%k%f%b%})&quot;
+prompt_bar_left_date=&quot;&lt;%{%B%}%D{%Y/%m/%d %H:%M}%{%b%}&gt;&quot;
+prompt_bar_left=&quot;-${prompt_bar_left_self}-${prompt_bar_left_status}-${prompt_bar_left_date}-&quot;
+### プロンプトバーの右側
+### %{%B%K{magenta}%F{white}%}...%{%f%k%b%}:
+### 「...」を太字のマゼンタ背景の白文字にする。
+### %d: カレントディレクトリのフルパス（省略しない）
+prompt_bar_right=&quot;[%{%B%K{magenta}%F{white}%}%d%{%f%k%b%}]-&quot;
+
+### 2行目左にでるプロンプト。
+### %h: ヒストリ数。
+### %(1j,(%j),): 実行中のジョブ数が1つ以上ある場合だけ「(%j)」を表示。
+### %j: 実行中のジョブ数。
+### %{%B%}...%{%b%}: 「...」を太字にする。
+### %#: 一般ユーザなら「%」、rootユーザなら「#」になる。
+#prompt_left=&quot;-[%h]%(1j,(%j),)%{%B%}%#%{%b%} &quot;
+prompt_update() {
+
+    echo $[RANDOM % 6] &gt; /dev/null
+
+    #prompt_left=&quot;%{%F$(fg256 $[RANDOM % 6] $[RANDOM % 6] $[RANDOM % 6])%}-[%h]%(1j,(%j),)%{%B%}%#%{%b%}%{%f%} &quot;
+    prompt_left=&quot;%{%F$(fg256 $[RANDOM % 5] $[RANDOM % 5] $[RANDOM % 5])%}-[%h]%(1j,(%j),)%{%B%}%#%{%b%}%{%f%} &quot;
+    PROMPT='${prompt_bar_left}${prompt_bar_right}'$'\n''${prompt_left}%{$fg_bold[red]%}➜ %{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+
+    ZSH_THEME_GIT_PROMPT_PREFIX=&quot;git:(%{$fg[red]%}&quot;
+    ZSH_THEME_GIT_PROMPT_SUFFIX=&quot;%{$reset_color%}&quot;
+    ZSH_THEME_GIT_PROMPT_DIRTY=&quot;%{$fg[blue]%}) %{$fg[yellow]%}✗%{$reset_color%}&quot;
+    ZSH_THEME_GIT_PROMPT_CLEAN=&quot;%{$fg[blue]%})&quot;
+
+}
+
+add-zsh-hook precmd prompt_update</code></pre></noscript></div>
+
+
+
 ]]></content>
   </entry>
   
@@ -360,393 +436,200 @@ submoduleにいれときたい（忘れる）ので、submodule add してから
     <link href="http://yuyunko.github.com/blog/2012/08/03/jscript/"/>
     <updated>2012-08-03T00:55:00+09:00</updated>
     <id>http://yuyunko.github.com/blog/2012/08/03/jscript</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-<span class='line-number'>103</span>
-<span class='line-number'>104</span>
-<span class='line-number'>105</span>
-<span class='line-number'>106</span>
-<span class='line-number'>107</span>
-<span class='line-number'>108</span>
-<span class='line-number'>109</span>
-<span class='line-number'>110</span>
-<span class='line-number'>111</span>
-<span class='line-number'>112</span>
-<span class='line-number'>113</span>
-<span class='line-number'>114</span>
-<span class='line-number'>115</span>
-<span class='line-number'>116</span>
-<span class='line-number'>117</span>
-<span class='line-number'>118</span>
-<span class='line-number'>119</span>
-<span class='line-number'>120</span>
-<span class='line-number'>121</span>
-<span class='line-number'>122</span>
-<span class='line-number'>123</span>
-<span class='line-number'>124</span>
-<span class='line-number'>125</span>
-<span class='line-number'>126</span>
-<span class='line-number'>127</span>
-<span class='line-number'>128</span>
-<span class='line-number'>129</span>
-<span class='line-number'>130</span>
-<span class='line-number'>131</span>
-<span class='line-number'>132</span>
-<span class='line-number'>133</span>
-<span class='line-number'>134</span>
-<span class='line-number'>135</span>
-<span class='line-number'>136</span>
-<span class='line-number'>137</span>
-<span class='line-number'>138</span>
-<span class='line-number'>139</span>
-<span class='line-number'>140</span>
-<span class='line-number'>141</span>
-<span class='line-number'>142</span>
-<span class='line-number'>143</span>
-<span class='line-number'>144</span>
-<span class='line-number'>145</span>
-<span class='line-number'>146</span>
-<span class='line-number'>147</span>
-<span class='line-number'>148</span>
-<span class='line-number'>149</span>
-<span class='line-number'>150</span>
-<span class='line-number'>151</span>
-<span class='line-number'>152</span>
-<span class='line-number'>153</span>
-<span class='line-number'>154</span>
-<span class='line-number'>155</span>
-<span class='line-number'>156</span>
-<span class='line-number'>157</span>
-<span class='line-number'>158</span>
-<span class='line-number'>159</span>
-<span class='line-number'>160</span>
-<span class='line-number'>161</span>
-<span class='line-number'>162</span>
-<span class='line-number'>163</span>
-<span class='line-number'>164</span>
-<span class='line-number'>165</span>
-<span class='line-number'>166</span>
-<span class='line-number'>167</span>
-<span class='line-number'>168</span>
-<span class='line-number'>169</span>
-<span class='line-number'>170</span>
-<span class='line-number'>171</span>
-<span class='line-number'>172</span>
-<span class='line-number'>173</span>
-<span class='line-number'>174</span>
-<span class='line-number'>175</span>
-<span class='line-number'>176</span>
-<span class='line-number'>177</span>
-<span class='line-number'>178</span>
-<span class='line-number'>179</span>
-<span class='line-number'>180</span>
-<span class='line-number'>181</span>
-<span class='line-number'>182</span>
-<span class='line-number'>183</span>
-<span class='line-number'>184</span>
-<span class='line-number'>185</span>
-<span class='line-number'>186</span>
-<span class='line-number'>187</span>
-<span class='line-number'>188</span>
-<span class='line-number'>189</span>
-<span class='line-number'>190</span>
-<span class='line-number'>191</span>
-<span class='line-number'>192</span>
-<span class='line-number'>193</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="err">@</span><span class="k">if</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">==</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="nx">echo</span> <span class="nx">off</span>
-</span><span class='line'>    <span class="nx">CScript</span><span class="p">.</span><span class="nx">exe</span> <span class="c1">//NoLogo //E:JScript &quot;%~f0&quot; %*</span>
-</span><span class='line'><span class="kr">goto</span> <span class="o">:</span><span class="nx">EOF</span>
-</span><span class='line'><span class="err">@</span><span class="nx">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">//{{{ ファイル入出力用関数</span>
-</span><span class='line'><span class="kd">function</span> <span class="nx">FileSystem</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">//{{{ member</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">fso</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;Scripting.FileSystemObject&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="c1">//}}}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> <span class="p">{</span>
-</span><span class='line'>        <span class="c1">//{{{ getFso</span>
-</span><span class='line'>        <span class="nx">getFso</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>            <span class="k">return</span> <span class="nx">fso</span><span class="p">;</span>
-</span><span class='line'>        <span class="p">},</span><span class="c1">//}}}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c1">//{{{ withReadFile:ファイル入力</span>
-</span><span class='line'>        <span class="nx">withReadFile</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">filename</span><span class="p">,</span> <span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>            <span class="kd">var</span> <span class="nx">file</span> <span class="o">=</span> <span class="nx">fso</span><span class="p">.</span><span class="nx">OpenTextFile</span><span class="p">(</span><span class="nx">filename</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-</span><span class='line'>            <span class="k">try</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">func</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
-</span><span class='line'>            <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">file</span><span class="p">.</span><span class="nx">Close</span><span class="p">();</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>        <span class="p">},</span><span class="c1">//}}}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c1">//{{{ withEachLine:ファイル行入力</span>
-</span><span class='line'>        <span class="nx">withEachLine</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">filename</span><span class="p">,</span> <span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>            <span class="nx">withReadFile</span><span class="p">(</span><span class="nx">filename</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nx">file</span><span class="p">.</span><span class="nx">AtEndOfStream</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                    <span class="nx">func</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">ReadLine</span><span class="p">());</span>
-</span><span class='line'>                <span class="p">}</span>
-</span><span class='line'>            <span class="p">});</span>
-</span><span class='line'>        <span class="p">},</span><span class="c1">//}}}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c1">//{{{ withWriteFile:ファイル出力</span>
-</span><span class='line'>        <span class="nx">withWriteFile</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">filename</span><span class="p">,</span> <span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>            <span class="kd">var</span> <span class="nx">file</span> <span class="o">=</span> <span class="nx">fso</span><span class="p">.</span><span class="nx">OpenTextFile</span><span class="p">(</span><span class="nx">filename</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-</span><span class='line'>            <span class="k">try</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">func</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
-</span><span class='line'>            <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">file</span><span class="p">.</span><span class="nx">Close</span><span class="p">();</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>        <span class="p">},</span><span class="c1">//}}}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c1">//{{{ withEachFileName:ファイル名一覧</span>
-</span><span class='line'>        <span class="nx">withEachFileName</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">path</span><span class="p">,</span> <span class="nx">subdir</span><span class="p">,</span> <span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>            <span class="kd">var</span> <span class="nx">folder</span> <span class="o">=</span> <span class="nx">fso</span><span class="p">.</span><span class="nx">GetFolder</span><span class="p">(</span><span class="nx">path</span><span class="p">);</span>
-</span><span class='line'>            <span class="kd">var</span> <span class="nx">files</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Enumerator</span><span class="p">(</span><span class="nx">folder</span><span class="p">.</span><span class="nx">Files</span><span class="p">);</span>
-</span><span class='line'>            <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nx">files</span><span class="p">.</span><span class="nx">atEnd</span><span class="p">())</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">func</span><span class="p">(</span><span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="nx">files</span><span class="p">.</span><span class="nx">item</span><span class="p">()));</span>
-</span><span class='line'>                <span class="nx">files</span><span class="p">.</span><span class="nx">moveNext</span><span class="p">();</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="nx">subdir</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="kd">var</span> <span class="nx">folders</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Enumerator</span><span class="p">(</span><span class="nx">folder</span><span class="p">.</span><span class="nx">SubFolders</span><span class="p">);</span>
-</span><span class='line'>                <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nx">folders</span><span class="p">.</span><span class="nx">atEnd</span><span class="p">())</span> <span class="p">{</span>
-</span><span class='line'>                    <span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">(</span><span class="nx">folders</span><span class="p">.</span><span class="nx">item</span><span class="p">(),</span> <span class="nx">subdir</span><span class="p">,</span> <span class="nx">func</span><span class="p">);</span>
-</span><span class='line'>                    <span class="nx">folders</span><span class="p">.</span><span class="nx">moveNext</span><span class="p">();</span>
-</span><span class='line'>                <span class="p">}</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>        <span class="p">},</span><span class="c1">//}}}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c1">//{{{ forceCreateFolders:フォルダ（ディレクトリ）階層の作成</span>
-</span><span class='line'>        <span class="nx">forceCreateFolders</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">fso</span><span class="p">.</span><span class="nx">FolderExists</span><span class="p">(</span><span class="nx">path</span><span class="p">))</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">forceCreateFolders</span><span class="p">(</span><span class="nx">fso</span><span class="p">.</span><span class="nx">GetParentFolderName</span><span class="p">(</span><span class="nx">path</span><span class="p">));</span>
-</span><span class='line'>                <span class="nx">fso</span><span class="p">.</span><span class="nx">CreateFolder</span><span class="p">(</span><span class="nx">path</span><span class="p">);</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>        <span class="p">}</span><span class="c1">//}}}</span>
-</span><span class='line'>    <span class="p">};</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="c1">//}}}</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">//{{{ EXCEL用関数</span>
-</span><span class='line'><span class="kd">function</span> <span class="nx">ExcelSystem</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1">//{{{ member</span>
-</span><span class='line'>    <span class="c1">// 表示属性指定用の定数</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">Excel</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>        <span class="c1">// 文字位置</span>
-</span><span class='line'>        <span class="nx">xlGeneral</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">xlLeft</span> <span class="o">:</span> <span class="o">-</span><span class="mi">4131</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">xlCenter</span> <span class="o">:</span> <span class="o">-</span><span class="mi">4108</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">xlRight</span> <span class="o">:</span> <span class="o">-</span><span class="mi">4152</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">xlTop</span> <span class="o">:</span> <span class="o">-</span><span class="mi">4160</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">xlBottom</span> <span class="o">:</span> <span class="o">-</span><span class="mi">4107</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">xlJustify</span> <span class="o">:</span> <span class="o">-</span><span class="mi">4130</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">xlDistributed</span> <span class="o">:</span> <span class="o">-</span><span class="mi">4117</span><span class="p">,</span>
-</span><span class='line'>        <span class="c1">// 罫線の位置</span>
-</span><span class='line'>        <span class="nx">xlEdgeLeft</span> <span class="o">:</span> <span class="mi">7</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">xlEdgeTop</span> <span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">xlEdgeRight</span> <span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">xlEdgeBottom</span> <span class="o">:</span> <span class="mi">9</span><span class="p">,</span>
-</span><span class='line'>        <span class="c1">// 罫線の種類</span>
-</span><span class='line'>        <span class="nx">xlContinuous</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">xlDash</span> <span class="o">:</span> <span class="o">-</span><span class="mi">4115</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">xlDashDot</span> <span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">xlDashDotDot</span> <span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">xlDot</span> <span class="o">:</span> <span class="o">-</span><span class="mi">4118</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">xlDouble</span> <span class="o">:</span> <span class="o">-</span><span class="mi">4119</span><span class="p">,</span>
-</span><span class='line'>        <span class="c1">// 罫線の太さ</span>
-</span><span class='line'>        <span class="nx">xlHairLine</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">xlThin</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">xlThick</span> <span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
-</span><span class='line'>        <span class="nx">xlMedium</span> <span class="o">:</span> <span class="o">-</span><span class="mi">4138</span>
-</span><span class='line'>    <span class="p">};</span>
-</span><span class='line'>    <span class="c1">//}}}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> <span class="p">{</span>
-</span><span class='line'>        <span class="c1">//{{{ withExcel:EXCEL起動</span>
-</span><span class='line'>        <span class="nx">withExcel</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">visible</span><span class="p">,</span> <span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>            <span class="kd">var</span> <span class="nx">excel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;Excel.Application&quot;</span><span class="p">);</span>
-</span><span class='line'>            <span class="nx">excel</span><span class="p">.</span><span class="nx">Visible</span> <span class="o">=</span> <span class="nx">visible</span><span class="p">;</span>
-</span><span class='line'>            <span class="nx">excel</span><span class="p">.</span><span class="nx">DisplayAlerts</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-</span><span class='line'>            <span class="k">try</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">func</span><span class="p">(</span><span class="nx">excel</span><span class="p">);</span>
-</span><span class='line'>            <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">excel</span><span class="p">.</span><span class="nx">Quit</span><span class="p">();</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>        <span class="p">},</span><span class="c1">//}}}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c1">//{{{ withWorkbook:EXCELワークブック操作</span>
-</span><span class='line'>        <span class="nx">withWorkbook</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">filename</span><span class="p">,</span> <span class="nx">visible</span><span class="p">,</span> <span class="nx">readonly</span><span class="p">,</span> <span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>            <span class="nx">ExcelSystem</span><span class="p">().</span><span class="nx">withExcel</span><span class="p">(</span><span class="nx">visible</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">excel</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="kd">var</span> <span class="nx">workbook</span> <span class="o">=</span> <span class="nx">excel</span><span class="p">.</span><span class="nx">Workbooks</span><span class="p">.</span><span class="nx">Open</span><span class="p">(</span><span class="nx">filename</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">readonly</span><span class="p">);</span>
-</span><span class='line'>                <span class="k">try</span> <span class="p">{</span>
-</span><span class='line'>                    <span class="nx">func</span><span class="p">(</span><span class="nx">workbook</span><span class="p">);</span>
-</span><span class='line'>                <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
-</span><span class='line'>                    <span class="nx">workbook</span><span class="p">.</span><span class="nx">Close</span><span class="p">();</span>
-</span><span class='line'>                <span class="p">}</span>
-</span><span class='line'>            <span class="p">});</span>
-</span><span class='line'>        <span class="p">},</span><span class="c1">//}}}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c1">//{{{ withNewWorkbook:EXCEL新規ワークブック操作</span>
-</span><span class='line'>        <span class="nx">withNewWorkbook</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">filename</span><span class="p">,</span> <span class="nx">visible</span><span class="p">,</span> <span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>            <span class="nx">withExcel</span><span class="p">(</span><span class="nx">visible</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">excel</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="kd">var</span> <span class="nx">workbook</span> <span class="o">=</span> <span class="nx">excel</span><span class="p">.</span><span class="nx">Workbooks</span><span class="p">.</span><span class="nx">Add</span><span class="p">();</span>
-</span><span class='line'>                <span class="k">try</span> <span class="p">{</span>
-</span><span class='line'>                    <span class="k">try</span> <span class="p">{</span>
-</span><span class='line'>                        <span class="nx">func</span><span class="p">(</span><span class="nx">workbook</span><span class="p">);</span>
-</span><span class='line'>                    <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
-</span><span class='line'>                        <span class="nx">workbook</span><span class="p">.</span><span class="nx">SaveAs</span><span class="p">(</span><span class="nx">filename</span><span class="p">);</span>
-</span><span class='line'>                    <span class="p">}</span>
-</span><span class='line'>                <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
-</span><span class='line'>                    <span class="nx">workbook</span><span class="p">.</span><span class="nx">Close</span><span class="p">();</span>
-</span><span class='line'>                <span class="p">}</span>
-</span><span class='line'>            <span class="p">});</span>
-</span><span class='line'>        <span class="p">},</span><span class="c1">//}}}</span>
-</span><span class='line'>
-</span><span class='line'>        <span class="c1">//{{{ setCellAttr:セル装飾指定</span>
-</span><span class='line'>        <span class="nx">setCellAttr</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">cell</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">attributes</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">width</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">cell</span><span class="p">.</span><span class="nx">ColumnWidth</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">cell</span><span class="p">.</span><span class="nx">RowHeight</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">font</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">cell</span><span class="p">.</span><span class="nx">Font</span><span class="p">.</span><span class="nx">Name</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">font</span><span class="p">;</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">fontSize</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">cell</span><span class="p">.</span><span class="nx">Font</span><span class="p">.</span><span class="nx">Size</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">fontSize</span><span class="p">;</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">fontStyle</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">cell</span><span class="p">.</span><span class="nx">Font</span><span class="p">.</span><span class="nx">FontStyle</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">fontStyle</span><span class="p">;</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">format</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">cell</span><span class="p">.</span><span class="nx">NumberFormatLocal</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">format</span><span class="p">;</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">align</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">cell</span><span class="p">.</span><span class="nx">HorizontalAlignment</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">align</span><span class="p">;</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">valign</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">cell</span><span class="p">.</span><span class="nx">VerticalAlignment</span> <span class="o">=</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">valign</span><span class="p">;</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">borders</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">borders</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                    <span class="nx">WScript</span><span class="p">.</span><span class="nx">Echo</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-</span><span class='line'>                    <span class="kd">var</span> <span class="nx">border</span> <span class="o">=</span> <span class="nx">cell</span><span class="p">.</span><span class="nx">Borders</span><span class="p">(</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">borders</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
-</span><span class='line'>                    <span class="nx">WScript</span><span class="p">.</span><span class="nx">Echo</span><span class="p">(</span><span class="nx">border</span><span class="p">.</span><span class="nx">Weight</span><span class="p">);</span>
-</span><span class='line'>                    <span class="nx">border</span><span class="p">.</span><span class="nx">Weight</span> <span class="o">=</span> <span class="nx">Excel</span><span class="p">.</span><span class="nx">xlThin</span><span class="p">;</span>
-</span><span class='line'>                    <span class="nx">border</span><span class="p">.</span><span class="nx">LineStyle</span> <span class="o">=</span> <span class="nx">Excel</span><span class="p">.</span><span class="nx">xlContinuous</span><span class="p">;</span>
-</span><span class='line'>                <span class="p">}</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>                <span class="nx">cell</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>        <span class="p">}</span><span class="c1">//}}}</span>
-</span><span class='line'>    <span class="p">};</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="c1">//}}}</span>
-</span></code></pre></td></tr></table></div></figure>
+    <content type="html"><![CDATA[<div><script src='https://gist.github.com/4418954.js'></script>
+<noscript><pre><code>@if(0)==(0) echo off
+    CScript.exe //NoLogo //E:JScript &quot;%~f0&quot; %*
+goto :EOF
+@end
+
+//{{{ ファイル入出力用関数
+function FileSystem() {
+
+    //{{{ member
+    var fso = new ActiveXObject(&quot;Scripting.FileSystemObject&quot;);
+    //}}}
+
+    return {
+        //{{{ getFso
+        getFso : function () {
+            return fso;
+        },//}}}
+
+        //{{{ withReadFile:ファイル入力
+        withReadFile : function (filename, func) {
+            var file = fso.OpenTextFile(filename, 1, false);
+            try {
+                func(file);
+            } finally {
+                file.Close();
+            }
+        },//}}}
+
+        //{{{ withEachLine:ファイル行入力
+        withEachLine : function (filename, func) {
+            withReadFile(filename, function (file) {
+                while (!file.AtEndOfStream) {
+                    func(file.ReadLine());
+                }
+            });
+        },//}}}
+
+        //{{{ withWriteFile:ファイル出力
+        withWriteFile : function (filename, func) {
+            var file = fso.OpenTextFile(filename, 2, true);
+            try {
+                func(file);
+            } finally {
+                file.Close();
+            }
+        },//}}}
+
+        //{{{ withEachFileName:ファイル名一覧
+        withEachFileName : function (path, subdir, func) {
+            var folder = fso.GetFolder(path);
+            var files = new Enumerator(folder.Files);
+            while (!files.atEnd()) {
+                func(new String(files.item()));
+                files.moveNext();
+            }
+            if (subdir) {
+                var folders = new Enumerator(folder.SubFolders);
+                while (!folders.atEnd()) {
+                    arguments.callee(folders.item(), subdir, func);
+                    folders.moveNext();
+                }
+            }
+        },//}}}
+
+        //{{{ forceCreateFolders:フォルダ（ディレクトリ）階層の作成
+        forceCreateFolders : function (path) {
+            if (path.length &gt; 0 &amp;&amp; !fso.FolderExists(path)) {
+                forceCreateFolders(fso.GetParentFolderName(path));
+                fso.CreateFolder(path);
+            }
+        }//}}}
+    };
+}
+//}}}
+
+//{{{ EXCEL用関数
+function ExcelSystem() {
+
+    //{{{ member
+    // 表示属性指定用の定数
+    var Excel = {
+        // 文字位置
+        xlGeneral : 1,
+        xlLeft : -4131,
+        xlCenter : -4108,
+        xlRight : -4152,
+        xlTop : -4160,
+        xlBottom : -4107,
+        xlJustify : -4130,
+        xlDistributed : -4117,
+        // 罫線の位置
+        xlEdgeLeft : 7,
+        xlEdgeTop : 8,
+        xlEdgeRight : 10,
+        xlEdgeBottom : 9,
+        // 罫線の種類
+        xlContinuous : 1,
+        xlDash : -4115,
+        xlDashDot : 4,
+        xlDashDotDot : 5,
+        xlDot : -4118,
+        xlDouble : -4119,
+        // 罫線の太さ
+        xlHairLine : 1,
+        xlThin : 2,
+        xlThick : 4,
+        xlMedium : -4138
+    };
+    //}}}
+
+    return {
+        //{{{ withExcel:EXCEL起動
+        withExcel : function (visible, func) {
+            var excel = new ActiveXObject(&quot;Excel.Application&quot;);
+            excel.Visible = visible;
+            excel.DisplayAlerts = false;
+            try {
+                func(excel);
+            } finally {
+                excel.Quit();
+            }
+        },//}}}
+
+        //{{{ withWorkbook:EXCELワークブック操作
+        withWorkbook : function (filename, visible, readonly, func) {
+            ExcelSystem().withExcel(visible, function (excel) {
+                var workbook = excel.Workbooks.Open(filename, 0, readonly);
+                try {
+                    func(workbook);
+                } finally {
+                    workbook.Close();
+                }
+            });
+        },//}}}
+
+        //{{{ withNewWorkbook:EXCEL新規ワークブック操作
+        withNewWorkbook : function (filename, visible, func) {
+            withExcel(visible, function (excel) {
+                var workbook = excel.Workbooks.Add();
+                try {
+                    try {
+                        func(workbook);
+                    } finally {
+                        workbook.SaveAs(filename);
+                    }
+                } finally {
+                    workbook.Close();
+                }
+            });
+        },//}}}
+
+        //{{{ setCellAttr:セル装飾指定
+        setCellAttr : function (cell, value, attributes) {
+            if (attributes.width) {
+                cell.ColumnWidth = attributes.width;
+            }
+            if (attributes.height) {
+                cell.RowHeight = attributes.height;
+            }
+            if (attributes.font) {
+                cell.Font.Name = attributes.font;
+            }
+            if (attributes.fontSize) {
+                cell.Font.Size = attributes.fontSize;
+            }
+            if (attributes.fontStyle) {
+                cell.Font.FontStyle = attributes.fontStyle;
+            }
+            if (attributes.format) {
+                cell.NumberFormatLocal = attributes.format;
+            }
+            if (attributes.align) {
+                cell.HorizontalAlignment = attributes.align;
+            }
+            if (attributes.valign) {
+                cell.VerticalAlignment = attributes.valign;
+            }
+            if (attributes.borders) {
+                for (var i = 0; i &lt; attributes.borders.length; i++) {
+                    WScript.Echo(i);
+                    var border = cell.Borders(attributes.borders[i]);
+                    WScript.Echo(border.Weight);
+                    border.Weight = Excel.xlThin;
+                    border.LineStyle = Excel.xlContinuous;
+                }
+            }
+            if (value) {
+                cell.value = value;
+            }
+        }//}}}
+    };
+}
+//}}}</code></pre></noscript></div>
 
 
 <p>1L〜4LまでがJScriptをバッチファイルとして実行するイディオム</p>
@@ -777,7 +660,7 @@ submoduleにいれときたい（忘れる）ので、submodule add してから
 
 <p>でインストール</p>
 
-<div><script src='https://gist.github.com/3114532.js?file='></script>
+<div><script src='https://gist.github.com/3114532.js'></script>
 <noscript><pre><code>brew install autojump
 </code></pre></noscript></div>
 
