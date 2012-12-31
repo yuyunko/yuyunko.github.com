@@ -4,7 +4,7 @@
   <title><![CDATA[Category: zsh,oh-my-zsh | yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/blog/categories/zsh-oh-my-zsh/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2012-12-31T13:09:59+09:00</updated>
+  <updated>2012-12-31T14:57:13+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -95,11 +95,14 @@
 <h1>Customize to your needs...</h1>
 
 <p>```
-最後の行の「Customize to your needs」の後に自分の設定を追記していく。
-テーマは、上記、「ZSH_THEME」で設定する。
-.oh-my-zsh/themes に自分で「mytheme.zsh-theme」という拡張子で設定ファイルを記述し、
-上記設定ファイルに「ZSH_THEME=mytheme」とすると、読み込んでくれる。
-僕はデフォルトの"robbyrussell"のテーマに<a href="https://github.com/clear-code/zsh.d">clear-code/zsh.d · GitHub</a>さんの
+最後の行の「Customize to your needs」の後に自分の設定を追記していく。</p>
+
+<p>テーマは、上記、「ZSH_THEME」で設定する。</p>
+
+<p>.oh-my-zsh/themes に自分で「mytheme.zsh-theme」という拡張子で設定ファイルを記述し、
+上記設定ファイルに「ZSH_THEME=mytheme」とすると、読み込んでくれる。</p>
+
+<p>僕はデフォルトの"robbyrussell"のテーマに<a href="https://github.com/clear-code/zsh.d">clear-code/zsh.d · GitHub</a>さんの
 設定をプラスさせて貰ったようなのを利用。</p>
 ]]></content>
   </entry>
