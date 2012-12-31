@@ -4,7 +4,7 @@
   <title><![CDATA[Category: zsh,oh-my-zsh | yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/blog/categories/zsh-oh-my-zsh/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2012-12-31T12:52:15+09:00</updated>
+  <updated>2012-12-31T13:09:59+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -22,9 +22,9 @@
 
 <h3>oh-my-zshの導入</h3>
 
-<p>まず、自分でカスタマイズ出来るようにgithub上で、以下をフォーク
-robbyrussell/oh-my-zsh · GitHub
-https://github.com/robbyrussell/oh-my-zsh</p>
+<p>まず、自分でカスタマイズ出来るようにgithub上で、以下をフォーク</p>
+
+<p><a href="https://github.com/robbyrussell/oh-my-zsh">robbyrussell/oh-my-zsh · GitHub</a></p>
 
 <p>フォークした自分のoh-my-zshをclone
 (clone先はデフォルトでは、~/.oh-my-zsh にしないといけない)
