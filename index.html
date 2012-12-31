@@ -9,9 +9,9 @@
   <meta name="author" content="yuyunko">
 
   
-  <meta name="description" content="TypeScriptがなにやら楽しそう。
-Macでも導入出来るっぽい。 TypeScriptを導入するには、node.jsが必要。
-今のところzsh使いに最適な方法は nodebrew を使う方法みたい。 curl でパイプにつないで直接入れる方法もあるっぽいけど、 &hellip;">
+  <meta name="description" content="年末大掃除、zshの設定をoh-my-zshを基準に設定し直した。 oh-my-zshの導入 まず、自分でカスタマイズ出来るようにgithub上で、以下をフォーク
+robbyrussell/oh-my-zsh · GitHub
+https://github.com/robbyrussell/oh- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,153 @@ Macでも導入出来るっぽい。 TypeScriptを導入するには、node.js�
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/12/31/oh-my-zsh/">Oh-my-zsh</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-31T10:59:00+09:00" pubdate data-updated="true">Dec 31<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>年末大掃除、zshの設定をoh-my-zshを基準に設定し直した。</p>
+
+<h3>oh-my-zshの導入</h3>
+
+<p>まず、自分でカスタマイズ出来るようにgithub上で、以下をフォーク
+robbyrussell/oh-my-zsh · GitHub
+https://github.com/robbyrussell/oh-my-zsh</p>
+
+<p>フォークした自分のoh-my-zshをclone
+(clone先はデフォルトでは、~/.oh-my-zsh にしないといけない)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>% git clone git@github.com:yuyunko/oh-my-zsh.git ~/.oh-my-zsh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>設定をシンボリックリンク</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>% ln -s ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>設定ファイルの初期値は以下の通り</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># Path to your oh-my-zsh configuration.</span>
+</span><span class='line'><span class="nv">ZSH</span><span class="o">=</span><span class="nv">$HOME</span>/.oh-my-zsh
+</span><span class='line'>
+</span><span class='line'><span class="c"># Set name of the theme to load.</span>
+</span><span class='line'><span class="c"># Look in ~/.oh-my-zsh/themes/</span>
+</span><span class='line'><span class="c"># Optionally, if you set this to &quot;random&quot;, it&#39;ll load a random theme each</span>
+</span><span class='line'><span class="c"># time that oh-my-zsh is loaded.</span>
+</span><span class='line'><span class="nv">ZSH_THEME</span><span class="o">=</span><span class="s2">&quot;robbyrussell&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Example aliases</span>
+</span><span class='line'><span class="c"># alias zshconfig=&quot;mate ~/.zshrc&quot;</span>
+</span><span class='line'><span class="c"># alias ohmyzsh=&quot;mate ~/.oh-my-zsh&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Set to this to use case-sensitive completion</span>
+</span><span class='line'><span class="c"># CASE_SENSITIVE=&quot;true&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Comment this out to disable bi-weekly auto-update checks</span>
+</span><span class='line'><span class="c"># DISABLE_AUTO_UPDATE=&quot;true&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Uncomment to change how many often would you like to wait before auto-updates occur? (in days)</span>
+</span><span class='line'><span class="c"># export UPDATE_ZSH_DAYS=13</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Uncomment following line if you want to disable colors in ls</span>
+</span><span class='line'><span class="c"># DISABLE_LS_COLORS=&quot;true&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Uncomment following line if you want to disable autosetting terminal title.</span>
+</span><span class='line'><span class="c"># DISABLE_AUTO_TITLE=&quot;true&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Uncomment following line if you want red dots to be displayed while waiting for completion</span>
+</span><span class='line'><span class="c"># COMPLETION_WAITING_DOTS=&quot;true&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)</span>
+</span><span class='line'><span class="c"># Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/</span>
+</span><span class='line'><span class="c"># Example format: plugins=(rails git textmate ruby lighthouse)</span>
+</span><span class='line'><span class="nv">plugins</span><span class="o">=(</span>git<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">source</span> <span class="nv">$ZSH</span>/oh-my-zsh.sh
+</span><span class='line'>
+</span><span class='line'><span class="c"># Customize to your needs...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最後の行の「Customize to your needs」の後に自分の設定を追記していく。
+テーマは、上記、「ZSH_THEME」で設定する。
+.oh-my-zsh/themes に自分で「mytheme.zsh-theme」という拡張子で設定ファイルを記述し、
+上記設定ファイルに「ZSH_THEME=mytheme」とすると、読み込んでくれる。
+僕はデフォルトの&#8221;robbyrussell&#8221;のテーマに<a href="https://github.com/clear-code/zsh.d">clear-code/zsh.d · GitHub</a>さんの
+設定をプラスさせて貰ったようなのを利用。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -815,6 +962,10 @@ submoduleにいれときたい（忘れる）ので、submodule add してから
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/31/oh-my-zsh/">oh-my-zsh</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/12/23/typescript-on-mac/">TypeScript on Mac</a>

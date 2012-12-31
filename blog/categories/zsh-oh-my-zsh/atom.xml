@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: zsh,oh-my-zsh | yuyunko's github pages]]></title>
+  <link href="http://yuyunko.github.com/blog/categories/zsh-oh-my-zsh/atom.xml" rel="self"/>
+  <link href="http://yuyunko.github.com/"/>
+  <updated>2012-12-31T12:52:15+09:00</updated>
+  <id>http://yuyunko.github.com/</id>
+  <author>
+    <name><![CDATA[yuyunko]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[oh-my-zsh]]></title>
+    <link href="http://yuyunko.github.com/blog/2012/12/31/oh-my-zsh/"/>
+    <updated>2012-12-31T10:59:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2012/12/31/oh-my-zsh</id>
+    <content type="html"><![CDATA[<p>年末大掃除、zshの設定をoh-my-zshを基準に設定し直した。</p>
+
+<h3>oh-my-zshの導入</h3>
+
+<p>まず、自分でカスタマイズ出来るようにgithub上で、以下をフォーク
+robbyrussell/oh-my-zsh · GitHub
+https://github.com/robbyrussell/oh-my-zsh</p>
+
+<p>フォークした自分のoh-my-zshをclone
+(clone先はデフォルトでは、~/.oh-my-zsh にしないといけない)
+<code>sh
+% git clone git@github.com:yuyunko/oh-my-zsh.git ~/.oh-my-zsh
+</code>
+設定をシンボリックリンク
+<code>sh
+% ln -s ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+</code>
+設定ファイルの初期値は以下の通り
+```sh</p>
+
+<h1>Path to your oh-my-zsh configuration.</h1>
+
+<p>ZSH=$HOME/.oh-my-zsh</p>
+
+<h1>Set name of the theme to load.</h1>
+
+<h1>Look in ~/.oh-my-zsh/themes/</h1>
+
+<h1>Optionally, if you set this to "random", it'll load a random theme each</h1>
+
+<h1>time that oh-my-zsh is loaded.</h1>
+
+<p>ZSH_THEME="robbyrussell"</p>
+
+<h1>Example aliases</h1>
+
+<h1>alias zshconfig="mate ~/.zshrc"</h1>
+
+<h1>alias ohmyzsh="mate ~/.oh-my-zsh"</h1>
+
+<h1>Set to this to use case-sensitive completion</h1>
+
+<h1>CASE_SENSITIVE="true"</h1>
+
+<h1>Comment this out to disable bi-weekly auto-update checks</h1>
+
+<h1>DISABLE_AUTO_UPDATE="true"</h1>
+
+<h1>Uncomment to change how many often would you like to wait before auto-updates occur? (in days)</h1>
+
+<h1>export UPDATE_ZSH_DAYS=13</h1>
+
+<h1>Uncomment following line if you want to disable colors in ls</h1>
+
+<h1>DISABLE_LS_COLORS="true"</h1>
+
+<h1>Uncomment following line if you want to disable autosetting terminal title.</h1>
+
+<h1>DISABLE_AUTO_TITLE="true"</h1>
+
+<h1>Uncomment following line if you want red dots to be displayed while waiting for completion</h1>
+
+<h1>COMPLETION_WAITING_DOTS="true"</h1>
+
+<h1>Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)</h1>
+
+<h1>Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/</h1>
+
+<h1>Example format: plugins=(rails git textmate ruby lighthouse)</h1>
+
+<p>plugins=(git)</p>
+
+<p>source $ZSH/oh-my-zsh.sh</p>
+
+<h1>Customize to your needs...</h1>
+
+<p>```
+最後の行の「Customize to your needs」の後に自分の設定を追記していく。
+テーマは、上記、「ZSH_THEME」で設定する。
+.oh-my-zsh/themes に自分で「mytheme.zsh-theme」という拡張子で設定ファイルを記述し、
+上記設定ファイルに「ZSH_THEME=mytheme」とすると、読み込んでくれる。
+僕はデフォルトの"robbyrussell"のテーマに<a href="https://github.com/clear-code/zsh.d">clear-code/zsh.d · GitHub</a>さんの
+設定をプラスさせて貰ったようなのを利用。</p>
+]]></content>
+  </entry>
+  
+</feed>

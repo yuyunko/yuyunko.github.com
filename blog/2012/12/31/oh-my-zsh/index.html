@@ -1,0 +1,416 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>oh-my-zsh - yuyunko's github pages</title>
+  <meta name="author" content="yuyunko">
+
+  
+  <meta name="description" content="年末大掃除、zshの設定をoh-my-zshを基準に設定し直した。 oh-my-zshの導入 まず、自分でカスタマイズ出来るようにgithub上で、以下をフォーク
+robbyrussell/oh-my-zsh · GitHub
+https://github.com/robbyrussell/oh- &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://yuyunko.github.com/blog/2012/12/31/oh-my-zsh/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="yuyunko's github pages" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">yuyunko's github pages</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:yuyunko.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Oh-my-zsh</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-31T10:59:00+09:00" pubdate data-updated="true">Dec 31<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>年末大掃除、zshの設定をoh-my-zshを基準に設定し直した。</p>
+
+<h3>oh-my-zshの導入</h3>
+
+<p>まず、自分でカスタマイズ出来るようにgithub上で、以下をフォーク
+robbyrussell/oh-my-zsh · GitHub
+https://github.com/robbyrussell/oh-my-zsh</p>
+
+<p>フォークした自分のoh-my-zshをclone
+(clone先はデフォルトでは、~/.oh-my-zsh にしないといけない)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>% git clone git@github.com:yuyunko/oh-my-zsh.git ~/.oh-my-zsh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>設定をシンボリックリンク</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>% ln -s ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>設定ファイルの初期値は以下の通り</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># Path to your oh-my-zsh configuration.</span>
+</span><span class='line'><span class="nv">ZSH</span><span class="o">=</span><span class="nv">$HOME</span>/.oh-my-zsh
+</span><span class='line'>
+</span><span class='line'><span class="c"># Set name of the theme to load.</span>
+</span><span class='line'><span class="c"># Look in ~/.oh-my-zsh/themes/</span>
+</span><span class='line'><span class="c"># Optionally, if you set this to &quot;random&quot;, it&#39;ll load a random theme each</span>
+</span><span class='line'><span class="c"># time that oh-my-zsh is loaded.</span>
+</span><span class='line'><span class="nv">ZSH_THEME</span><span class="o">=</span><span class="s2">&quot;robbyrussell&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Example aliases</span>
+</span><span class='line'><span class="c"># alias zshconfig=&quot;mate ~/.zshrc&quot;</span>
+</span><span class='line'><span class="c"># alias ohmyzsh=&quot;mate ~/.oh-my-zsh&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Set to this to use case-sensitive completion</span>
+</span><span class='line'><span class="c"># CASE_SENSITIVE=&quot;true&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Comment this out to disable bi-weekly auto-update checks</span>
+</span><span class='line'><span class="c"># DISABLE_AUTO_UPDATE=&quot;true&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Uncomment to change how many often would you like to wait before auto-updates occur? (in days)</span>
+</span><span class='line'><span class="c"># export UPDATE_ZSH_DAYS=13</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Uncomment following line if you want to disable colors in ls</span>
+</span><span class='line'><span class="c"># DISABLE_LS_COLORS=&quot;true&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Uncomment following line if you want to disable autosetting terminal title.</span>
+</span><span class='line'><span class="c"># DISABLE_AUTO_TITLE=&quot;true&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Uncomment following line if you want red dots to be displayed while waiting for completion</span>
+</span><span class='line'><span class="c"># COMPLETION_WAITING_DOTS=&quot;true&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)</span>
+</span><span class='line'><span class="c"># Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/</span>
+</span><span class='line'><span class="c"># Example format: plugins=(rails git textmate ruby lighthouse)</span>
+</span><span class='line'><span class="nv">plugins</span><span class="o">=(</span>git<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">source</span> <span class="nv">$ZSH</span>/oh-my-zsh.sh
+</span><span class='line'>
+</span><span class='line'><span class="c"># Customize to your needs...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最後の行の「Customize to your needs」の後に自分の設定を追記していく。
+テーマは、上記、「ZSH_THEME」で設定する。
+.oh-my-zsh/themes に自分で「mytheme.zsh-theme」という拡張子で設定ファイルを記述し、
+上記設定ファイルに「ZSH_THEME=mytheme」とすると、読み込んでくれる。
+僕はデフォルトの&#8221;robbyrussell&#8221;のテーマに<a href="https://github.com/clear-code/zsh.d">clear-code/zsh.d · GitHub</a>さんの
+設定をプラスさせて貰ったようなのを利用。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">yuyunko</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-31T10:59:00+09:00" pubdate data-updated="true">Dec 31<span>st</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/zsh-oh-my-zsh/'>zsh,oh-my-zsh</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://yuyunko.github.com/blog/2012/12/31/oh-my-zsh/" data-via="r_y_y_k_m" data-counturl="http://yuyunko.github.com/blog/2012/12/31/oh-my-zsh/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/12/23/typescript-on-mac/" title="Previous Post: TypeScript on Mac">&laquo; TypeScript on Mac</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/31/oh-my-zsh/">oh-my-zsh</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/23/typescript-on-mac/">TypeScript on Mac</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/03/jscript/">バッチファイルとしてJScriptを実行</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/15/zsh-autojump/">zsh でautojump</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/15/first-blog/">github pages 初投稿！</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/yuyunko">@yuyunko</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'yuyunko',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("r_y_y_k_m", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/r_y_y_k_m" class="twitter-follow-button" data-show-count="false">Follow @r_y_y_k_m</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - yuyunko -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yuyunko';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://yuyunko.github.com/blog/2012/12/31/oh-my-zsh/';
+        var disqus_url = 'http://yuyunko.github.com/blog/2012/12/31/oh-my-zsh/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
