@@ -4,7 +4,7 @@
   <title><![CDATA[yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2012-12-31T23:22:15+09:00</updated>
+  <updated>2013-01-27T15:14:04+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -12,6 +12,112 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[vim + quickrun + wsh + typescript]]></title>
+    <link href="http://yuyunko.github.com/blog/2013/01/27/vim-%2B-quickrun-%2B-wsh/"/>
+    <updated>2013-01-27T02:30:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2013/01/27/vim-+-quickrun-+-wsh</id>
+    <content type="html"><![CDATA[<p>quickrunの設定をした。</p>
+
+<div><script src='https://gist.github.com/4646785.js'></script>
+<noscript><pre><code>NeoBundle 'thinca/vim-quickrun.git', {
+            \ 'depends' : ['Shougo/vimproc', 'Shougo/unite.vim.git', 'osyo-manga/unite-quickfix', 'osyo-manga/shabadou.vim', 'jceb/vim-hier']
+            \ }
+
+&quot;&quot; vim-quickrun {{{
+&quot; quickrunの最終的なコマンドを出力する {{{
+&quot; http://d.hatena.ne.jp/osyo-manga/searchdiary?word=quickrun
+let s:hook = {
+\   &quot;name&quot; : &quot;output_command&quot;,
+\   &quot;kind&quot; : &quot;hook&quot;,
+\   &quot;config&quot; : {
+\       &quot;enable&quot; : 0,
+\       &quot;log&quot; : 0
+\   }
+\}
+
+function! s:hook.on_ready(session, context)
+    HierClear
+    for command in a:session.commands
+        execute self.config.log ? &quot;echom command&quot; : &quot;echo command&quot;
+    endfor
+endfunction
+
+call quickrun#module#register(s:hook, 1)
+unlet s:hook
+&quot; }}}
+
+&quot; TypeScript コンパイル後にヘッダ等を追加 {{{
+let s:hook = {
+            \ &quot;name&quot; : &quot;js2cmd&quot;,
+            \ &quot;kind&quot; : &quot;hook&quot;,
+            \ &quot;config&quot; : {
+            \       &quot;enable&quot; : 0
+            \  }
+            \ }
+
+function! s:hook.on_success(session, context)
+    let list = []
+    call add(list, &quot;@if(0)==(0) ECHO OFF\r&quot;)
+    call add(list, &quot;    pushd \&quot;%~dp0\&quot; &gt; nul\r&quot;)
+    call add(list, &quot;    CScript.exe //NoLogo //E:JScript \&quot;%~f0\&quot; %*\r&quot;)
+    call add(list, &quot;    popd &gt; nul\r&quot;)
+    call add(list, &quot;pause\r&quot;)
+    call add(list, &quot;GOTO :EOF\r&quot;)
+    call add(list, &quot;@end\r&quot;)
+    call add(list, &quot;\r&quot;)
+    let inJs = fnamemodify(a:session.config.srcfile, &quot;:p:r&quot;) . '.js'
+    let outCmd = fnamemodify(a:session.config.srcfile, &quot;:p:r&quot;) . '.cmd'
+    echom inJs
+    echom outCmd
+    let utf8List = list + readfile(inJs, 'b')
+    let cp932List = []
+    for line in utf8List
+        call add(cp932List, iconv(line, &quot;UTF-8&quot;, &quot;CP932&quot;))
+    endfor
+    call writefile(cp932List, outCmd, 'b')
+endfunction
+
+call quickrun#module#register(s:hook, 1)
+unlet s:hook
+&quot; }}}
+
+let g:quickrun_config = {}
+let g:quickrun_config = {
+            \   &quot;_&quot; : {
+            \       &quot;hook/output_command/enable&quot; : 1,
+            \       &quot;hook/close_unite_quickfix/enable_hook_loaded&quot; : 1,
+            \       &quot;hook/unite_quickfix/enable_failure&quot; : 1,
+            \       &quot;hook/close_quickfix/enable_exit&quot; : 1,
+            \       &quot;hook/close_buffer/enable_failure&quot; : 1,
+            \       &quot;hook/close_buffer/enable_empty_data&quot; : 1,
+            \       &quot;hook/echo/enable&quot; : 1,
+            \       &quot;hook/echo/output_success&quot; : &quot;success!!!&quot;,
+            \       &quot;hook/echo/output_failure&quot; : &quot;failure...&quot;,
+            \       &quot;outputter&quot; : &quot;multi:buffer:quickfix&quot;,
+            \       &quot;outputter/buffer/split&quot; : &quot;:botright 8sp&quot;,
+            \       &quot;runner&quot; : &quot;vimproc&quot;,
+            \       &quot;runner/vimproc/updatetime&quot; : 40,
+            \   },
+            \ &quot;typescript&quot; : {
+            \       &quot;commad&quot; : &quot;tsc&quot;,
+            \       &quot;cmdopt&quot; : &quot;--nolib --out&quot;,
+            \       &quot;exec&quot;   : &quot;%c %s _lib.ts %s %o %s:p:r.js&quot;,
+            \       &quot;hook/js2cmd/enable&quot; : 1,
+            \       &quot;hook/output_command/log&quot; : 1,
+            \   }
+            \ }
+&quot;}}}</code></pre></noscript></div>
+
+
+<p>quickrunの設定には &#8216;osyo-manga/shabadou.vim&#8217; がとても便利です。
+WindowsのJScriptをTypeScriptで記述するための設定。
+ライブラリ的なのは、全て &#8220;_lib.ts&#8221; に記述し、実行ファイルソース上で &#8220;\r&#8221; でquickrun ！</p>
+
+<p>&#8220;test.ts&#8221; で quickrunすると、&#8221;_lib.ts&#8221; も含めて、&#8221;test.cmd&#8221; を生成する。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[octopress theme]]></title>
