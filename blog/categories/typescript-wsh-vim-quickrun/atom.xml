@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: TypeScript,wsh,vim,quickrun | yuyunko's github pages]]></title>
+  <link href="http://yuyunko.github.com/blog/categories/typescript-wsh-vim-quickrun/atom.xml" rel="self"/>
+  <link href="http://yuyunko.github.com/"/>
+  <updated>2013-02-03T02:48:20+09:00</updated>
+  <id>http://yuyunko.github.com/</id>
+  <author>
+    <name><![CDATA[yuyunko]]></name>
+    <email><![CDATA[i.xxxxxxxxxxxxx.13@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[TypeScripts][QuickRun] reference pathから自動でコンパイルオプション生成]]></title>
+    <link href="http://yuyunko.github.com/blog/2013/02/03/%5Btypescripts%5D%5Bquickrun%5D-reference-path-%E3%81%8B%E3%82%89%E8%87%AA%E5%8B%95%E3%81%A6%E3%82%99%E3%82%B3%E3%83%B3%E3%83%8F%E3%82%9A%E3%82%A4%E3%83%AB%E3%82%AA%E3%83%95%E3%82%9A%E3%82%B7%E3%83%A7%E3%83%B3%E7%94%9F%E6%88%90/"/>
+    <updated>2013-02-03T02:01:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2013/02/03/[typescripts][quickrun]-reference-path-から自動でコンパイルオプション生成</id>
+    <content type="html"><![CDATA[<p><a href="http://yuyunko.github.com/blog/2013/01/27/vim-%2B-quickrun-%2B-wsh/">前回の記事</a>で
+TypeScriptでのQuickRunの設定を書いたが、どうせならreference pathから自動でコンパイルオプションを生成するようにしたら
+いんじゃね？って思って変更しました。</p>
+
+<p><div><script src='https://gist.github.com/4698340.js'></script>
+<noscript><pre><code>&quot;&quot; vim-quickrun {{{
+&quot; quickrunの最終的なコマンドを出力する {{{
+&quot; http://d.hatena.ne.jp/osyo-manga/searchdiary?word=quickrun
+let s:hook = {
+\   &quot;name&quot; : &quot;output_command&quot;,
+\   &quot;kind&quot; : &quot;hook&quot;,
+\   &quot;config&quot; : {
+\       &quot;enable&quot; : 0,
+\       &quot;log&quot; : 0
+\   }
+\}
+
+function! s:hook.on_ready(session, context)
+    HierClear
+    for command in a:session.commands
+        execute self.config.log ? &quot;echom command&quot; : &quot;echo command&quot;
+    endfor
+endfunction
+
+call quickrun#module#register(s:hook, 1)
+unlet s:hook
+&quot; }}}
+
+&quot; TypeScript コンパイル後にヘッダ等を追加 {{{
+let s:hook = {
+            \ &quot;name&quot; : &quot;js2cmd&quot;,
+            \ &quot;kind&quot; : &quot;hook&quot;,
+            \ &quot;config&quot; : {
+            \       &quot;enable&quot; : 0
+            \  }
+            \ }
+
+function! s:hook.on_module_loaded(session, context)
+    let references = []
+    for line in readfile(a:session.config.srcfile, '', 15)
+        if line =~ '^///&lt;reference path='
+            &quot;echom 'reference : ' . line[stridx(line, '&quot;') + 1 : -4]
+            if line[stridx(line, '&quot;') + 1 : -4] !~ 'lib.d.ts'
+                call add(references, line[stridx(line, '&quot;') + 1 : -4])
+            endif
+        endif
+    endfor
+    &quot;echom 'exec : %c --nolib %s ' . join(references, ' ') . ' --out %s:p:r.js'
+    let a:session.config.exec = '%c --nolib %s ' . join(references, ' ') . ' --out %s:p:r.js'
+endfunction
+
+function! s:hook.on_success(session, context)
+    let list = []
+    call add(list, &quot;@if(0)==(0) ECHO OFF\r&quot;)
+    for line in readfile(a:session.config.srcfile, '', 10)
+        if line =~ '^//'
+            if line[3 : 4] =~ 'OP'
+                echom 'option : ' . line[stridx(line, '&quot;') + 1 : -2]
+                if line[stridx(line, '&quot;') + 1 : -2] =~ '^pushd'
+                    call add(list, &quot;    pushd \&quot;%~dp0\&quot; &gt; nul\r&quot;)
+                    call add(list, &quot;    CScript.exe //NoLogo //E:JScript \&quot;%~f0\&quot; %*\r&quot;)
+                    call add(list, &quot;    popd &gt; nul\r&quot;)
+                else
+                    call add(list, &quot;    CScript.exe //NoLogo //E:JScript \&quot;%~f0\&quot; %*\r&quot;)
+                endif
+            endif
+        endif
+    endfor
+    call add(list, &quot;pause\r&quot;)
+    call add(list, &quot;GOTO :EOF\r&quot;)
+    call add(list, &quot;@end\r&quot;)
+    call add(list, &quot;\r&quot;)
+    let inJs = fnamemodify(a:session.config.srcfile, &quot;:p:r&quot;) . '.js'
+    let outCmd = fnamemodify(a:session.config.srcfile, &quot;:p:r&quot;) . '.cmd'
+    echom inJs
+    echom outCmd
+    let utf8List = list + readfile(inJs, 'b')
+    let cp932List = []
+    for line in utf8List
+        call add(cp932List, iconv(line, &quot;UTF-8&quot;, &quot;CP932&quot;))
+    endfor
+    call writefile(cp932List, outCmd, 'b')
+    if has('win32') || has('win64')
+        call {s:system}('del ' . inJs)
+    else
+        call {s:system}('rm ' . inJs)
+    endif
+endfunction
+
+call quickrun#module#register(s:hook, 1)
+unlet s:hook
+&quot; }}}
+
+let g:quickrun_config = {}
+let g:quickrun_config = {
+            \   &quot;_&quot; : {
+            \       &quot;hook/output_command/enable&quot; : 1,
+            \       &quot;hook/close_unite_quickfix/enable_hook_loaded&quot; : 1,
+            \       &quot;hook/unite_quickfix/enable_failure&quot; : 1,
+            \       &quot;hook/close_quickfix/enable_exit&quot; : 1,
+            \       &quot;hook/close_buffer/enable_failure&quot; : 1,
+            \       &quot;hook/close_buffer/enable_empty_data&quot; : 1,
+            \       &quot;hook/echo/enable&quot; : 1,
+            \       &quot;hook/echo/output_success&quot; : &quot;success!!!&quot;,
+	        \       &quot;hook/echo/output_failure&quot; : &quot;failure...&quot;,
+            \       &quot;outputter&quot; : &quot;multi:buffer:quickfix&quot;,
+            \       &quot;outputter/buffer/split&quot; : &quot;:botright 8sp&quot;,
+            \       &quot;runner&quot; : &quot;vimproc&quot;,
+            \       &quot;runner/vimproc/updatetime&quot; : 40,
+            \   },
+            \ &quot;typescript&quot; : {
+            \       &quot;commad&quot; : &quot;tsc&quot;,
+            \       &quot;cmdopt&quot; : &quot;--nolib --out&quot;,
+            \       &quot;exec&quot;   : &quot;%c %s _lib.ts %o %s:p:r.js&quot;,
+            \       &quot;hook/js2cmd/enable&quot; : 1,
+            \       &quot;hook/output_command/log&quot; : 1,
+            \   }
+            \ }
+&quot;}}}</code></pre></noscript></div>
+</p>
+
+<p>TypeScriptファイルの先頭15行以内にあるreferenceを読み込んで、コンパイルオプションに追加してます。</p>
+
+<p>例) 先頭15行以内に以下が含まれてる場合
+<code>vim
+///&lt;reference path="_lib.ts"/&gt;
+///&lt;reference path="_file.ts"/&gt;
+</code>
+コンパイルオプションは以下になる
+<code>vim
+'%c --nolib %s _lib.ts _file.ts --out %s:p:r.js'
+</code>
+ちなみに'--nolib' を指定しているのは標準の'lib.d.ts'を拡張しているので、標準のは読み込んで欲しくないからです。</p>
+
+<p>また、最終的にはwsh(JScript)として実行したいため、'OP:'の行指定によりコンパイル後のjsファイルに
+JScriptとして実行するためのヘッダファイルを付加しています。</p>
+
+<p>例)
+<code>vim
+// OP: "pushd"
+</code>
+の場合、下記のヘッダがjsファイルに付加され、拡張子が'cmd'になります。
+```
+@if(0)==(0) ECHO OFF</p>
+
+<pre><code>pushd "%~dp0" &gt; nul
+CScript.exe //NoLogo //E:JScript "%~f0" %*
+popd &gt; nul
+</code></pre>
+
+<p>pause
+GOTO :EOF
+@end
+```</p>
+
+<p><code>vim
+// OP: "nopushd"
+</code>
+上記の場合、下記のヘッダがjsファイルに付加されます。
+```
+@if(0)==(0) ECHO OFF</p>
+
+<pre><code>CScript.exe //NoLogo //E:JScript "%~f0" %*
+</code></pre>
+
+<p>pause
+GOTO :EOF
+@end
+```</p>
+]]></content>
+  </entry>
+  
+</feed>
