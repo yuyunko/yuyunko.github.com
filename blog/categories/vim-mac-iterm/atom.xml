@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: vim,mac,iterm | yuyunko's github pages]]></title>
+  <link href="http://yuyunko.github.com/blog/categories/vim-mac-iterm/atom.xml" rel="self"/>
+  <link href="http://yuyunko.github.com/"/>
+  <updated>2013-02-20T00:08:41+09:00</updated>
+  <id>http://yuyunko.github.com/</id>
+  <author>
+    <name><![CDATA[yuyunko]]></name>
+    <email><![CDATA[i.xxxxxxxxxxxxx.13@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[KeyRemap4MacBook-iTerm2-MacVim]]></title>
+    <link href="http://yuyunko.github.com/blog/2013/02/18/keyremap4macbook-iterm-macvim/"/>
+    <updated>2013-02-18T21:41:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2013/02/18/keyremap4macbook-iterm-macvim</id>
+    <content type="html"><![CDATA[<p>macでターミナルを使用する場合、iTerm2が便利。</p>
+
+<p>しかし、iTerm2上のvimで日本語を使う時、Insertモードから抜けると自動でIMEを
+OFFにしてくれない点が非常に不便。</p>
+
+<p>これを解決するのが、「KeyRemap4Macbook」。
+「KeyRemap4Macbook」では、キーが押された時にそのキーを他のキーにリマップすることが出来る。</p>
+
+<p>標準でもかなり多くのリマップが用意されているが、それ以外にも自分で「private.xml」に定義することが出来る。</p>
+
+<p>KeyRemap4Macbookの「private.xml」に以下の定義をした。</p>
+
+<p><div><script src='https://gist.github.com/4978133.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
+
+<p>SubLimeText2とかの設定もあるけど、使ったことはありません・・・。
+これはパクリ(参考)元の設定のまま。</p>
+
+<p>参考:</p>
+
+<p><a href="http://qiita.com/items/d5714d44f39ed917eebe">Vimで挿入モードから抜ける時に英数入力に切り替える #Mac #Vim - Qiita</a></p>
+]]></content>
+  </entry>
+  
+</feed>
