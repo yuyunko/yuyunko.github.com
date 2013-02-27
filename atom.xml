@@ -4,7 +4,7 @@
   <title><![CDATA[yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2013-02-28T00:02:28+09:00</updated>
+  <updated>2013-02-28T00:05:44+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[vim qickrunでcoffeescriptコンパイル]]></title>
+    <title type="html"><![CDATA[vim quickrunでcoffeescriptコンパイル]]></title>
     <link href="http://yuyunko.github.com/blog/2013/02/27/coffee-script/"/>
     <updated>2013-02-27T23:47:00+09:00</updated>
     <id>http://yuyunko.github.com/blog/2013/02/27/coffee-script</id>
