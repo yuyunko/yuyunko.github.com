@@ -4,7 +4,7 @@
   <title><![CDATA[yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2013-02-20T00:08:41+09:00</updated>
+  <updated>2013-02-28T00:02:28+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -12,6 +12,45 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[vim qickrunでcoffeescriptコンパイル]]></title>
+    <link href="http://yuyunko.github.com/blog/2013/02/27/coffee-script/"/>
+    <updated>2013-02-27T23:47:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2013/02/27/coffee-script</id>
+    <content type="html"><![CDATA[<p>vimのquickrunでcoffeescriptをコンパイルする設定</p>
+
+<div><script src='https://gist.github.com/5048458.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+
+
+<p>複数ファイルをまとめてコンパイルしたいので、依存するファイルは、ファイルの
+先頭らへんで擬似的に&#8217;import&#8217;と記述しておく。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1"># import &#39;_lib/_lib.coffee&#39;</span>
+</span><span class='line'><span class="c1"># import &#39;_lib/FileSystem.coffee&#39;</span>
+</span><span class='line'><span class="c1"># import &#39;_lib/ShellSystem.coffee&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;hello&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>みたいに記述された &#8216;test.coffee&#8217;というソース上で&#8217;<leader>r&#8217;
+実行すると、</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>coffee -j test.js -cb _lib/_lib.coffee _lib/FileSystem.coffee _lib/ShellSystem.coffee test.coffee
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>が実行される。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[KeyRemap4MacBook-iTerm2-MacVim]]></title>

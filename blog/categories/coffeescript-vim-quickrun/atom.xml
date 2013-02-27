@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: coffeescript,vim,quickrun | yuyunko's github pages]]></title>
+  <link href="http://yuyunko.github.com/blog/categories/coffeescript-vim-quickrun/atom.xml" rel="self"/>
+  <link href="http://yuyunko.github.com/"/>
+  <updated>2013-02-28T00:02:28+09:00</updated>
+  <id>http://yuyunko.github.com/</id>
+  <author>
+    <name><![CDATA[yuyunko]]></name>
+    <email><![CDATA[i.xxxxxxxxxxxxx.13@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[vim qickrunでcoffeescriptコンパイル]]></title>
+    <link href="http://yuyunko.github.com/blog/2013/02/27/coffee-script/"/>
+    <updated>2013-02-27T23:47:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2013/02/27/coffee-script</id>
+    <content type="html"><![CDATA[<p>vimのquickrunでcoffeescriptをコンパイルする設定</p>
+
+<p><div><script src='https://gist.github.com/5048458.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
+
+<p>複数ファイルをまとめてコンパイルしたいので、依存するファイルは、ファイルの
+先頭らへんで擬似的に'import'と記述しておく。</p>
+
+<p>```coffeescript</p>
+
+<h1>import '<em>lib/</em>lib.coffee'</h1>
+
+<h1>import '_lib/FileSystem.coffee'</h1>
+
+<h1>import '_lib/ShellSystem.coffee'</h1>
+
+<p>console.log "hello"
+<code>
+みたいに記述された 'test.coffee'というソース上で'&lt;leader&gt;r'
+実行すると、
+</code>sh
+coffee -j test.js -cb <em>lib/</em>lib.coffee <em>lib/FileSystem.coffee </em>lib/ShellSystem.coffee test.coffee
+```
+が実行される。</p>
+]]></content>
+  </entry>
+  
+</feed>
