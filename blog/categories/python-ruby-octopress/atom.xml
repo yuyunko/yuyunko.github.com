@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: python,ruby,octopress | yuyunko's github pages]]></title>
+  <link href="http://yuyunko.github.com/blog/categories/python-ruby-octopress/atom.xml" rel="self"/>
+  <link href="http://yuyunko.github.com/"/>
+  <updated>2013-03-03T23:15:54+09:00</updated>
+  <id>http://yuyunko.github.com/</id>
+  <author>
+    <name><![CDATA[yuyunko]]></name>
+    <email><![CDATA[i.xxxxxxxxxxxxx.13@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Octopressでコードsyntaxがエラーになった場合]]></title>
+    <link href="http://yuyunko.github.com/blog/2013/03/03/octopress%E3%81%A6%E3%82%99%E3%82%B3%E3%83%BC%E3%83%88%E3%82%99syntax%E3%81%8B%E3%82%99%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%9F%E5%A0%B4%E5%90%88/"/>
+    <updated>2013-03-03T22:49:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2013/03/03/octopressでコードsyntaxがエラーになった場合</id>
+    <content type="html"><![CDATA[<p>Octopressで
+<code>sh
+$ rake generate
+</code>
+した時、コードを記載した部分でエラーになることがあった。</p>
+
+<p>```sh
+$ rake generate</p>
+
+<h2>Generating Site with Jekyll</h2>
+
+<p>   remove .sass-cache/
+   remove source/stylesheets/screen.css
+   create source/stylesheets/screen.css
+Configuration from /Users/user/Dropbox/documents/git/MyGit/octopress/_config.yml
+Building site: source -> public
+/Users/user/.rbenv/versions/1.9.3-p374/lib/ruby/gems/1.9.1/gems/pygments.rb-0.3.4/lib/pygments/popen.rb:354:in `rescue in get_header': Failed to get header. (MentosError)</p>
+
+<pre><code>    from /Users/user/.rbenv/versions/1.9.3-p374/lib/ruby/gems/1.9.1/gems/pygments.rb-0.3.4/lib/pygments/popen.rb:335:in `get_header'
+    from /Users/user/.rbenv/versions/1.9.3-p374/lib/ruby/gems/1.9.1/gems/pygments.rb-0.3.4/lib/pygments/popen.rb:232:in `block in mentos'
+    from /Users/user/.rbenv/versions/1.9.3-p374/lib/ruby/1.9.1/timeout.rb:68:in `timeout'
+    from /Users/user/.rbenv/versions/1.9.3-p374/lib/ruby/gems/1.9.1/gems/pygments.rb-0.3.4/lib/pygments/popen.rb:206:in `mentos'
+    from /Users/user/.rbenv/versions/1.9.3-p374/lib/ruby/gems/1.9.1/gems/pygments.rb-0.3.4/lib/pygments/popen.rb:189:in `highlight'
+    from /Users/user/Dropbox/documents/git/MyGit/octopress/plugins/pygments_code.rb:24:in `pygments'
+    from /Users/user/Dropbox/documents/git/MyGit/octopress/plugins/pygments_code.rb:14:in `highlight'
+    from /Users/user/Dropbox/documents/git/MyGit/octopress/plugins/backtick_code_block.rb:37:in `block in render_code_block'
+    from /Users/user/Dropbox/documents/git/MyGit/octopress/plugins/backtick_code_block.rb:13:in `gsub'
+    from /Users/user/Dropbox/documents/git/MyGit/octopress/plugins/backtick_code_block.rb:13:in `render_code_block'
+    from /Users/user/Dropbox/documents/git/MyGit/octopress/plugins/octopress_filters.rb:12:in `pre_filter'
+    from /Users/user/Dropbox/documents/git/MyGit/octopress/plugins/octopress_filters.rb:28:in `pre_render'
+    from /Users/user/Dropbox/documents/git/MyGit/octopress/plugins/post_filters.rb:112:in `block in pre_render'
+    from /Users/user/Dropbox/documents/git/MyGit/octopress/plugins/post_filters.rb:111:in `each'
+    from /Users/user/Dropbox/documents/git/MyGit/octopress/plugins/post_filters.rb:111:in `pre_render'
+    from /Users/user/Dropbox/documents/git/MyGit/octopress/plugins/post_filters.rb:166:in `do_layout'
+    from /Users/user/.rbenv/versions/1.9.3-p374/lib/ruby/gems/1.9.1/gems/jekyll-0.12.0/lib/jekyll/post.rb:195:in `render'
+    from /Users/user/.rbenv/versions/1.9.3-p374/lib/ruby/gems/1.9.1/gems/jekyll-0.12.0/lib/jekyll/site.rb:200:in `block in render'
+    from /Users/user/.rbenv/versions/1.9.3-p374/lib/ruby/gems/1.9.1/gems/jekyll-0.12.0/lib/jekyll/site.rb:199:in `each'
+    from /Users/user/.rbenv/versions/1.9.3-p374/lib/ruby/gems/1.9.1/gems/jekyll-0.12.0/lib/jekyll/site.rb:199:in `render'
+    from /Users/user/.rbenv/versions/1.9.3-p374/lib/ruby/gems/1.9.1/gems/jekyll-0.12.0/lib/jekyll/site.rb:41:in `process'
+    from /Users/user/.rbenv/versions/1.9.3-p374/lib/ruby/gems/1.9.1/gems/jekyll-0.12.0/bin/jekyll:264:in `&lt;top (required)&gt;'
+    from /Users/user/.rbenv/versions/1.9.3-p374/bin/jekyll:23:in `load'
+    from /Users/user/.rbenv/versions/1.9.3-p374/bin/jekyll:23:in `&lt;main&gt;'
+</code></pre>
+
+<p>```</p>
+
+<p>なんかコードsyntaxにpythonを使ってるみたいで、pythonのバージョンが3系やとダメみたい。
+そこで、「octopress」用に「python2.7」でvirtualenv環境を作成してあげる。</p>
+
+<p>virtualenv環境のインストールは<a href="http://yuyunko.github.com/blog/2013/03/03/mac-mountain-lion-python-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89/">先日の記事</a>
+参照。</p>
+
+<p><code>sh
+$ mkvirtualenv -p /usr/bin/python --distribute octopress
+$ workon octopress
+</code></p>
+
+<p>これで、システムのpython (OSX Mountain Lionではpython2.7) の環境になる。
+そこで rake generate すれば、無事エラーはなくなる。</p>
+
+<p>元に戻るには、
+<code>sh
+$ deactivate
+</code></p>
+
+<p>参考
+<a href="http://www.wongdev.com/blog/2013/01/16/octopress-on-archlinux/">Octopress on Arch Linux - wongdev.com</a></p>
+]]></content>
+  </entry>
+  
+</feed>
