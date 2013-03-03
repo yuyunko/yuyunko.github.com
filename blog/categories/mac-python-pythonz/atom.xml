@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: mac,python,pythonz | yuyunko's github pages]]></title>
+  <link href="http://yuyunko.github.com/blog/categories/mac-python-pythonz/atom.xml" rel="self"/>
+  <link href="http://yuyunko.github.com/"/>
+  <updated>2013-03-03T22:45:33+09:00</updated>
+  <id>http://yuyunko.github.com/</id>
+  <author>
+    <name><![CDATA[yuyunko]]></name>
+    <email><![CDATA[i.xxxxxxxxxxxxx.13@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Mac Mountain Lion python 環境構築]]></title>
+    <link href="http://yuyunko.github.com/blog/2013/03/03/mac-mountain-lion-python-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89/"/>
+    <updated>2013-03-03T18:56:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2013/03/03/mac-mountain-lion-python-環境構築</id>
+    <content type="html"><![CDATA[<p>python環境構築。</p>
+
+<p>pythonzのインストール。
+<code>sh
+$ curl -kL https://raw.github.com/saghul/pythonz/master/pythonz-install | bash
+</code></p>
+
+<p>.zshenvに追記。
+```sh</p>
+
+<h1>pythonz</h1>
+
+<p>if [ -s $HOME/.pythonz/etc/bashrc ]; then</p>
+
+<pre><code>source $HOME/.pythonz/etc/bashrc
+# use python 3.2.3
+if [ -d "$HOME/.pythonz/pythons/CPython-3.2.3/bin" ]; then
+    export PATH=$HOME/.pythonz/pythons/CPython-3.2.3/bin:$PATH
+    export VIRTUALENVWRAPPER_PYTHON=$HOME/.pythonz/pythons/CPython-3.2.3/bin/python
+    export VIRTUALENVWRAPPER_VIRTUALENV=$HOME/.pythonz/pythons/CPython-3.2.3/bin/virtualenv
+    export WORKON_HOME=$HOME/.virtualenvs
+    source $HOME/.pythonz/pythons/CPython-3.2.3/bin/virtualenvwrapper.sh
+fi
+</code></pre>
+
+<p>fi
+```</p>
+
+<p>インストール出来るリスト
+<code>sh
+$ pythonz list -a
+</code></p>
+
+<p>インストール
+<code>sh
+$ pythonz install 2.7.3 3.2.3
+</code></p>
+
+<p>easy_install と pip とvirtualenv のインストール
+<code>sh
+$ source ~/.zshenv
+$ mkdir ~/.distribute_setup_py
+$ cd ~/.distribute_setup_py
+$ curl -O http://python-distribute.org/distribute_setup.py
+$ python distribute_setup.py
+$ easy_install pip
+$ pip install virtualenv virtualenvwrapper
+</code>
+pythonz でインストールした python でセットアップすると、そのpython のバージョンに
+easy_install と pip を入れてくれる。
+<code>sh
+$ which easy_install
+/Users/yuki/.pythonz/pythons/CPython-3.2.3/bin/easy_install
+$ which pip
+/Users/yuki/.pythonz/pythons/CPython-3.2.3/bin/pip
+$ which virtualenv
+/Users/yuki/.pythonz/pythons/CPython-3.2.3/bin/virtualenv
+</code></p>
+
+<p>参考</p>
+
+<p><a href="http://krakenbeal.blogspot.jp/2012/05/pythonz-python-323.html">pythonz で python 3.2.3 を インストール - KRAKENBEAL RECORDS</a>
+<a href="http://memo.fifnel.com/2012/09/191/">pythonz + virtualenv + virtualenvwrapper でPython開発環境を作ってみる on MacOSX10.8 | ふぃふメモ</a></p>
+]]></content>
+  </entry>
+  
+</feed>

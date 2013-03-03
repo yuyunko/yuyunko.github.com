@@ -4,7 +4,7 @@
   <title><![CDATA[yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2013-02-28T00:26:06+09:00</updated>
+  <updated>2013-03-03T22:45:33+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -12,6 +12,107 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mac Mountain Lion python 環境構築]]></title>
+    <link href="http://yuyunko.github.com/blog/2013/03/03/mac-mountain-lion-python-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89/"/>
+    <updated>2013-03-03T18:56:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2013/03/03/mac-mountain-lion-python-環境構築</id>
+    <content type="html"><![CDATA[<p>python環境構築。</p>
+
+<p>pythonzのインストール。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>curl -kL https://raw.github.com/saghul/pythonz/master/pythonz-install | bash
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>.zshenvに追記。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># pythonz</span>
+</span><span class='line'><span class="k">if</span> <span class="o">[</span> -s <span class="nv">$HOME</span>/.pythonz/etc/bashrc <span class="o">]</span>; <span class="k">then</span>
+</span><span class='line'><span class="k">    </span><span class="nb">source</span> <span class="nv">$HOME</span>/.pythonz/etc/bashrc
+</span><span class='line'>    <span class="c"># use python 3.2.3</span>
+</span><span class='line'>    <span class="k">if</span> <span class="o">[</span> -d <span class="s2">&quot;$HOME/.pythonz/pythons/CPython-3.2.3/bin&quot;</span> <span class="o">]</span>; <span class="k">then</span>
+</span><span class='line'><span class="k">        </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/.pythonz/pythons/CPython-3.2.3/bin:<span class="nv">$PATH</span>
+</span><span class='line'>        <span class="nb">export </span><span class="nv">VIRTUALENVWRAPPER_PYTHON</span><span class="o">=</span><span class="nv">$HOME</span>/.pythonz/pythons/CPython-3.2.3/bin/python
+</span><span class='line'>        <span class="nb">export </span><span class="nv">VIRTUALENVWRAPPER_VIRTUALENV</span><span class="o">=</span><span class="nv">$HOME</span>/.pythonz/pythons/CPython-3.2.3/bin/virtualenv
+</span><span class='line'>        <span class="nb">export </span><span class="nv">WORKON_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/.virtualenvs
+</span><span class='line'>        <span class="nb">source</span> <span class="nv">$HOME</span>/.pythonz/pythons/CPython-3.2.3/bin/virtualenvwrapper.sh
+</span><span class='line'>    <span class="k">fi</span>
+</span><span class='line'><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>インストール出来るリスト</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>pythonz list -a
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>インストール</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>pythonz install 2.7.3 3.2.3
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>easy_install と pip とvirtualenv のインストール</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span><span class="nb">source</span> ~/.zshenv
+</span><span class='line'><span class="nv">$ </span>mkdir ~/.distribute_setup_py
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd</span> ~/.distribute_setup_py
+</span><span class='line'><span class="nv">$ </span>curl -O http://python-distribute.org/distribute_setup.py
+</span><span class='line'><span class="nv">$ </span>python distribute_setup.py
+</span><span class='line'><span class="nv">$ </span>easy_install pip
+</span><span class='line'><span class="nv">$ </span>pip install virtualenv virtualenvwrapper
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>pythonz でインストールした python でセットアップすると、そのpython のバージョンに
+easy_install と pip を入れてくれる。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>which easy_install
+</span><span class='line'>/Users/yuki/.pythonz/pythons/CPython-3.2.3/bin/easy_install
+</span><span class='line'><span class="nv">$ </span>which pip
+</span><span class='line'>/Users/yuki/.pythonz/pythons/CPython-3.2.3/bin/pip
+</span><span class='line'><span class="nv">$ </span>which virtualenv
+</span><span class='line'>/Users/yuki/.pythonz/pythons/CPython-3.2.3/bin/virtualenv
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>参考</p>
+
+<p><a href="http://krakenbeal.blogspot.jp/2012/05/pythonz-python-323.html">pythonz で python 3.2.3 を インストール - KRAKENBEAL RECORDS</a>
+<a href="http://memo.fifnel.com/2012/09/191/">pythonz + virtualenv + virtualenvwrapper でPython開発環境を作ってみる on MacOSX10.8 | ふぃふメモ</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[vim quickrunでcoffeescriptコンパイル]]></title>
