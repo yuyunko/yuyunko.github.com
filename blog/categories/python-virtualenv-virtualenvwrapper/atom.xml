@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: python,virtualenv,virtualenvwrapper | yuyunko's github pages]]></title>
+  <link href="http://yuyunko.github.com/blog/categories/python-virtualenv-virtualenvwrapper/atom.xml" rel="self"/>
+  <link href="http://yuyunko.github.com/"/>
+  <updated>2013-03-06T00:19:43+09:00</updated>
+  <id>http://yuyunko.github.com/</id>
+  <author>
+    <name><![CDATA[yuyunko]]></name>
+    <email><![CDATA[i.xxxxxxxxxxxxx.13@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[python virtualenv virtualenvwrapper]]></title>
+    <link href="http://yuyunko.github.com/blog/2013/03/06/python-virtualenv-virtualenvwrapper/"/>
+    <updated>2013-03-06T00:02:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2013/03/06/python-virtualenv-virtualenvwrapper</id>
+    <content type="html"><![CDATA[<p>virtualenvwrapperの使い方。</p>
+
+<h2>仮想環境作成</h2>
+
+<p><code>sh
+$ mkvirtualenv -p (使いたいPython バージョンへのパス) --distribute (作成するvirtualenv)
+</code>
+例) pythonzでインストールしたpython 3.2.3 の環境を作成
+<code>sh
+$ mkvirtualenv -p /Users/user/.pythonz/pythons/CPython-3.2.3/bin/python --distribute 3.2.3
+</code></p>
+
+<h2>仮想環境一覧</h2>
+
+<p><code>sh
+$ lsvirtualenv
+octopress
+3.2.3
+</code>
+もしくは
+<code>sh
+$ workon
+octopress
+3.2.3
+</code></p>
+
+<h2>仮想環境に入る</h2>
+
+<p><code>sh
+$ workon octopress
+</code></p>
+
+<h2>作成した仮想環境の削除</h2>
+
+<p><code>sh
+$ rmvirtualenv
+</code></p>
+
+<p>参考
+<a href="http://virtualenvwrapper-docs-ja.readthedocs.org/en/latest/command_ref.html">コマンドリファレンス — virtualenvwrapper 3.5 documentation</a></p>
+]]></content>
+  </entry>
+  
+</feed>

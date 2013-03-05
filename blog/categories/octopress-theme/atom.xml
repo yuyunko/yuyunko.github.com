@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: octopress,theme | yuyunko's github pages]]></title>
+  <link href="http://yuyunko.github.com/blog/categories/octopress-theme/atom.xml" rel="self"/>
+  <link href="http://yuyunko.github.com/"/>
+  <updated>2013-03-06T00:19:43+09:00</updated>
+  <id>http://yuyunko.github.com/</id>
+  <author>
+    <name><![CDATA[yuyunko]]></name>
+    <email><![CDATA[i.xxxxxxxxxxxxx.13@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[octopress テーマカスタマイズ]]></title>
+    <link href="http://yuyunko.github.com/blog/2013/03/04/octopress-%E3%83%86%E3%83%BC%E3%83%9E%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%9E%E3%82%A4%E3%82%B9%E3%82%99/"/>
+    <updated>2013-03-04T23:34:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2013/03/04/octopress-テーマカスタマイズ</id>
+    <content type="html"><![CDATA[<p>octopress のフォントサイズを変えたいと思った。</p>
+
+<p><code>
+octopress/sass/custom/_styles.scss
+</code></p>
+
+<p>を変更すると出来るみたい。</p>
+
+<p><code>css
+body { font-size: 0.8em; }
+</code></p>
+
+<p>の部分を変更した。</p>
+]]></content>
+  </entry>
+  
+</feed>
