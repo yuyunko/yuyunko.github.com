@@ -4,7 +4,7 @@
   <title><![CDATA[yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2013-03-06T00:19:43+09:00</updated>
+  <updated>2013-03-12T22:34:30+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -302,8 +302,9 @@ easy_install と pip を入れてくれる。</p>
 
 <p>参考</p>
 
-<p><a href="http://krakenbeal.blogspot.jp/2012/05/pythonz-python-323.html">pythonz で python 3.2.3 を インストール - KRAKENBEAL RECORDS</a>
-<a href="http://memo.fifnel.com/2012/09/191/">pythonz + virtualenv + virtualenvwrapper でPython開発環境を作ってみる on MacOSX10.8 | ふぃふメモ</a></p>
+<p><a href="http://krakenbeal.blogspot.jp/2012/05/pythonz-python-323.html">pythonz で python 3.2.3 を インストール - KRAKENBEAL RECORDS</a></p>
+
+<p><a href="http://memo.fifnel.com/2012/09/191/">pythonz + virtualenv + virtualenvwrapper でPython開発環境を作ってみる on MacOSX10.8 | ふぃふメモ</a></p>
 ]]></content>
   </entry>
   
