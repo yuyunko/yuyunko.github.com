@@ -7,9 +7,9 @@
 	<meta name="author" content="yuyunko">
 
 	
-	<meta name="description" content="TypeScriptがなにやら楽しそう。
+	<meta name="description" content="Dec 23rd, 2012 typescript,mac,zsh TypeScript on Mac TypeScriptがなにやら楽しそう。
 Macでも導入出来るっぽい。 TypeScriptを導入するには、node.jsが必要。
-今のところzsh使いに最適な方法は nodebrew を使う方法みたい。 curl でパイプにつないで直接入れる方法もあるっぽいけど、 &hellip;">
+今のところzsh使いに最適な方法は nodebrew &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -26,28 +26,18 @@ Macでも導入出来るっぽい。 TypeScriptを導入するには、node.js�
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
 	
-	
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-40279660-1']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
-
-
 </head>
+
 
 <body>
 	<div class="container">
 		<div class="left-col">
 			<div class="intrude-less">
 			<header id="header" class="inner"><div class="profilepic">	
-	<img src="/images/dp.jpg" alt="Profile Picture" style="width: 160px;">
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		document.write("<img src='http://www.gravatar.com/avatar/" + MD5("i.xxxxxxxxxxxxx.13@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+	</script>
 </div>
 <h1><a href="/">yuyunko's github pages</a></h1>
 <p class="subtitle"></p>
@@ -99,9 +89,10 @@ Macでも導入出来るっぽい。 TypeScriptを導入するには、node.js�
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner">
+<div itemscope itemtype="http://schema.org/Blog">
 
 
-    <article class="post">
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="meta">
 		<div class="date">
 
@@ -115,7 +106,7 @@ Macでも導入出来るっぽい。 TypeScriptを導入するには、node.js�
   
 
 
-<time datetime="2012-12-23T08:34:00+09:00" pubdate data-updated="true">Dec 23<span>rd</span>, 2012</time></div>
+<time datetime="2012-12-23T08:34:00+09:00" data-updated="true" itemprop="datePublished">Dec 23<span>rd</span>, 2012</time></div>
 		<div class="tags">
 
 
@@ -125,8 +116,8 @@ Macでも導入出来るっぽい。 TypeScriptを導入するには、node.js�
 </div>
 		
 	</div>
-	<h1 class="title"><a href="/blog/2012/12/23/typescript-on-mac/">TypeScript on Mac</a></h1>
-	<div class="entry-content">
+	<h1 class="title" itemprop="name"><a href="/blog/2012/12/23/typescript-on-mac/" itemprop="url">TypeScript on Mac</a></h1>
+	<div class="entry-content" itemprop="articleBody">
 		<p>TypeScriptがなにやら楽しそう。
 Macでも導入出来るっぽい。</p>
 
@@ -305,7 +296,7 @@ submoduleにいれときたい（忘れる）ので、submodule add してから
 </article>
 
 
-    <article class="post">
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="meta">
 		<div class="date">
 
@@ -319,7 +310,7 @@ submoduleにいれときたい（忘れる）ので、submodule add してから
   
 
 
-<time datetime="2012-08-03T00:55:00+09:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2012</time></div>
+<time datetime="2012-08-03T00:55:00+09:00" data-updated="true" itemprop="datePublished">Aug 3<span>rd</span>, 2012</time></div>
 		<div class="tags">
 
 
@@ -329,8 +320,8 @@ submoduleにいれときたい（忘れる）ので、submodule add してから
 </div>
 		
 	</div>
-	<h1 class="title"><a href="/blog/2012/08/03/jscript/">バッチファイルとしてJScriptを実行</a></h1>
-	<div class="entry-content">
+	<h1 class="title" itemprop="name"><a href="/blog/2012/08/03/jscript/" itemprop="url">バッチファイルとしてJScriptを実行</a></h1>
+	<div class="entry-content" itemprop="articleBody">
 		<div><script src='https://gist.github.com/4418954.js'></script>
 <noscript><pre><code>@if(0)==(0) echo off
     CScript.exe //NoLogo //E:JScript &quot;%~f0&quot; %*
@@ -546,7 +537,7 @@ function ExcelSystem() {
 </article>
 
 
-    <article class="post">
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="meta">
 		<div class="date">
 
@@ -560,7 +551,7 @@ function ExcelSystem() {
   
 
 
-<time datetime="2012-07-15T09:09:00+09:00" pubdate data-updated="true">Jul 15<span>th</span>, 2012</time></div>
+<time datetime="2012-07-15T09:09:00+09:00" data-updated="true" itemprop="datePublished">Jul 15<span>th</span>, 2012</time></div>
 		<div class="tags">
 
 
@@ -570,8 +561,8 @@ function ExcelSystem() {
 </div>
 		
 	</div>
-	<h1 class="title"><a href="/blog/2012/07/15/zsh-autojump/">Zsh でautojump</a></h1>
-	<div class="entry-content">
+	<h1 class="title" itemprop="name"><a href="/blog/2012/07/15/zsh-autojump/" itemprop="url">Zsh でautojump</a></h1>
+	<div class="entry-content" itemprop="articleBody">
 		<p>zshでautojumpが非常に便利だということを知った。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -606,7 +597,7 @@ function ExcelSystem() {
 </article>
 
 
-    <article class="post">
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 	<div class="meta">
 		<div class="date">
 
@@ -620,14 +611,14 @@ function ExcelSystem() {
   
 
 
-<time datetime="2012-07-15T02:05:00+09:00" pubdate data-updated="true">Jul 15<span>th</span>, 2012</time></div>
+<time datetime="2012-07-15T02:05:00+09:00" data-updated="true" itemprop="datePublished">Jul 15<span>th</span>, 2012</time></div>
 		<div class="tags">
 
 </div>
 		
 	</div>
-	<h1 class="title"><a href="/blog/2012/07/15/first-blog/">Github Pages 初投稿！</a></h1>
-	<div class="entry-content">
+	<h1 class="title" itemprop="name"><a href="/blog/2012/07/15/first-blog/" itemprop="url">Github Pages 初投稿！</a></h1>
+	<div class="entry-content" itemprop="articleBody">
 		<h2>初投稿</h2>
 
 <p>どうかな？</p>
@@ -638,6 +629,7 @@ function ExcelSystem() {
 
 </article>
 
+</div>
 <nav id="pagenavi">
     
         <a href="/" class="prev">Prev</a>
