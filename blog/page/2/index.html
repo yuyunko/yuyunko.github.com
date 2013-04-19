@@ -7,9 +7,7 @@
 	<meta name="author" content="yuyunko">
 
 	
-	<meta name="description" content="Dec 23rd, 2012 typescript,mac,zsh TypeScript on Mac TypeScriptがなにやら楽しそう。
-Macでも導入出来るっぽい。 TypeScriptを導入するには、node.jsが必要。
-今のところzsh使いに最適な方法は nodebrew &hellip;">
+	<meta name="description" content="Dec 31st, 2012 zsh,oh-my-zsh Oh-my-zsh 年末大掃除、zshの設定をoh-my-zshを基準に設定し直した。 oh-my-zshの導入 まず、自分でカスタマイズ出来るようにgithub上で、以下をフォーク robbyrussell/oh-my-zsh · &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,6 +88,235 @@ Macでも導入出来るっぽい。 TypeScriptを導入するには、node.js�
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-31T10:59:00+09:00" data-updated="true" itemprop="datePublished">Dec 31<span>st</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/zsh-oh-my-zsh/'>zsh,oh-my-zsh</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2012/12/31/oh-my-zsh/" itemprop="url">Oh-my-zsh</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>年末大掃除、zshの設定をoh-my-zshを基準に設定し直した。</p>
+
+<h3>oh-my-zshの導入</h3>
+
+<p>まず、自分でカスタマイズ出来るようにgithub上で、以下をフォーク</p>
+
+<p><a href="https://github.com/robbyrussell/oh-my-zsh">robbyrussell/oh-my-zsh · GitHub</a></p>
+
+<p>フォークした自分のoh-my-zshをclone
+(clone先はデフォルトでは、~/.oh-my-zsh にしないといけない)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>% git clone git@github.com:yuyunko/oh-my-zsh.git ~/.oh-my-zsh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>設定をシンボリックリンク</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>% ln -s ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>設定ファイルの初期値は以下の通り</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c"># Path to your oh-my-zsh configuration.</span>
+</span><span class='line'><span class="nv">ZSH</span><span class="o">=</span><span class="nv">$HOME</span>/.oh-my-zsh
+</span><span class='line'>
+</span><span class='line'><span class="c"># Set name of the theme to load.</span>
+</span><span class='line'><span class="c"># Look in ~/.oh-my-zsh/themes/</span>
+</span><span class='line'><span class="c"># Optionally, if you set this to &quot;random&quot;, it&#39;ll load a random theme each</span>
+</span><span class='line'><span class="c"># time that oh-my-zsh is loaded.</span>
+</span><span class='line'><span class="nv">ZSH_THEME</span><span class="o">=</span><span class="s2">&quot;robbyrussell&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Example aliases</span>
+</span><span class='line'><span class="c"># alias zshconfig=&quot;mate ~/.zshrc&quot;</span>
+</span><span class='line'><span class="c"># alias ohmyzsh=&quot;mate ~/.oh-my-zsh&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Set to this to use case-sensitive completion</span>
+</span><span class='line'><span class="c"># CASE_SENSITIVE=&quot;true&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Comment this out to disable bi-weekly auto-update checks</span>
+</span><span class='line'><span class="c"># DISABLE_AUTO_UPDATE=&quot;true&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Uncomment to change how many often would you like to wait before auto-updates occur? (in days)</span>
+</span><span class='line'><span class="c"># export UPDATE_ZSH_DAYS=13</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Uncomment following line if you want to disable colors in ls</span>
+</span><span class='line'><span class="c"># DISABLE_LS_COLORS=&quot;true&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Uncomment following line if you want to disable autosetting terminal title.</span>
+</span><span class='line'><span class="c"># DISABLE_AUTO_TITLE=&quot;true&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Uncomment following line if you want red dots to be displayed while waiting for completion</span>
+</span><span class='line'><span class="c"># COMPLETION_WAITING_DOTS=&quot;true&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)</span>
+</span><span class='line'><span class="c"># Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/</span>
+</span><span class='line'><span class="c"># Example format: plugins=(rails git textmate ruby lighthouse)</span>
+</span><span class='line'><span class="nv">plugins</span><span class="o">=(</span>git<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">source</span> <span class="nv">$ZSH</span>/oh-my-zsh.sh
+</span><span class='line'>
+</span><span class='line'><span class="c"># Customize to your needs...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>最後の行の「Customize to your needs」の後に自分の設定を追記していく。</p>
+
+<p>テーマは、上記、「ZSH_THEME」で設定する。</p>
+
+<p>.oh-my-zsh/themes に自分で「mytheme.zsh-theme」という拡張子で設定ファイルを記述し、
+上記設定ファイルに「ZSH_THEME=mytheme」とすると、読み込んでくれる。</p>
+
+<p>僕はデフォルトの&#8221;robbyrussell&#8221;のテーマに<a href="https://github.com/clear-code/zsh.d">clear-code/zsh.d · GitHub</a>さんの
+設定をプラスさせて貰ったようなのを利用。</p>
+
+<div><script src='https://gist.github.com/4418029.js'></script>
+<noscript><pre><code>## 256色生成用便利関数
+### red: 0-5
+### green: 0-5
+### blue: 0-5
+color256()
+{
+    local red=$1; shift
+    local green=$2; shift
+    local blue=$3; shift
+
+    echo -n $[$red * 36 + $green * 6 + $blue + 16]
+}
+
+fg256()
+{
+    echo -n $'\e[38;5;'$(color256 &quot;$@&quot;)&quot;m&quot;
+}
+
+bg256()
+{
+    echo -n $'\e[48;5;'$(color256 &quot;$@&quot;)&quot;m&quot;
+}
+### プロンプトバーの左側
+### %{%B%}...%{%b%}: 「...」を太字にする。
+### %{%F{cyan}%}...%{%f%}: 「...」をシアン色の文字にする。
+### %n: ユーザ名
+### %m: ホスト名（完全なホスト名ではなくて短いホスト名）
+### %{%B%F{white}%(?.%K{green}.%K{red})%}%?%{%f%k%b%}:
+### 最後に実行したコマンドが正常終了していれば
+### 太字で白文字で緑背景にして異常終了していれば
+### 太字で白文字で赤背景にする。
+### %{%F{white}%}: 白文字にする。
+### %(x.true-text.false-text): xが真のときはtrue-textになり
+### 偽のときはfalse-textになる。
+### ?: 最後に実行したコマンドの終了ステータスが0のときに真になる。
+### %K{green}: 緑景色にする。
+### %K{red}: 赤景色を赤にする。
+### %?: 最後に実行したコマンドの終了ステータス
+### %{%k%}: 背景色を元に戻す。
+### %{%f%}: 文字の色を元に戻す。
+### %{%b%}: 太字を元に戻す。
+### %D{%Y/%m/%d %H:%M}: 日付。「年/月/日 時:分」というフォーマット。
+prompt_bar_left_self=&quot;(%{%B%}%n%{%b%}%{%F{cyan}%}@%{%f%}%{%B%}%m%{%b%})&quot;
+prompt_bar_left_status=&quot;(%{%B%F{white}%(?.%K{green}.%K{red})%}%?%{%k%f%b%})&quot;
+prompt_bar_left_date=&quot;&lt;%{%B%}%D{%Y/%m/%d %H:%M}%{%b%}&gt;&quot;
+prompt_bar_left=&quot;-${prompt_bar_left_self}-${prompt_bar_left_status}-${prompt_bar_left_date}-&quot;
+### プロンプトバーの右側
+### %{%B%K{magenta}%F{white}%}...%{%f%k%b%}:
+### 「...」を太字のマゼンタ背景の白文字にする。
+### %d: カレントディレクトリのフルパス（省略しない）
+prompt_bar_right=&quot;[%{%B%K{magenta}%F{white}%}%d%{%f%k%b%}]-&quot;
+
+### 2行目左にでるプロンプト。
+### %h: ヒストリ数。
+### %(1j,(%j),): 実行中のジョブ数が1つ以上ある場合だけ「(%j)」を表示。
+### %j: 実行中のジョブ数。
+### %{%B%}...%{%b%}: 「...」を太字にする。
+### %#: 一般ユーザなら「%」、rootユーザなら「#」になる。
+#prompt_left=&quot;-[%h]%(1j,(%j),)%{%B%}%#%{%b%} &quot;
+prompt_update() {
+
+    echo $[RANDOM % 6] &gt; /dev/null
+
+    #prompt_left=&quot;%{%F$(fg256 $[RANDOM % 6] $[RANDOM % 6] $[RANDOM % 6])%}-[%h]%(1j,(%j),)%{%B%}%#%{%b%}%{%f%} &quot;
+    prompt_left=&quot;%{%F$(fg256 $[RANDOM % 5] $[RANDOM % 5] $[RANDOM % 5])%}-[%h]%(1j,(%j),)%{%B%}%#%{%b%}%{%f%} &quot;
+    PROMPT='${prompt_bar_left}${prompt_bar_right}'$'\n''${prompt_left}%{$fg_bold[red]%}➜ %{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+
+    ZSH_THEME_GIT_PROMPT_PREFIX=&quot;git:(%{$fg[red]%}&quot;
+    ZSH_THEME_GIT_PROMPT_SUFFIX=&quot;%{$reset_color%}&quot;
+    ZSH_THEME_GIT_PROMPT_DIRTY=&quot;%{$fg[blue]%}) %{$fg[yellow]%}✗%{$reset_color%}&quot;
+    ZSH_THEME_GIT_PROMPT_CLEAN=&quot;%{$fg[blue]%})&quot;
+
+}
+
+add-zsh-hook precmd prompt_update</code></pre></noscript></div>
+
+
+
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">

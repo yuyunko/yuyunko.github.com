@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: dropbox,online,storage | yuyunko's github pages]]></title>
+  <link href="http://yuyunko.github.com/blog/categories/dropbox-online-storage/atom.xml" rel="self"/>
+  <link href="http://yuyunko.github.com/"/>
+  <updated>2013-04-20T07:59:48+09:00</updated>
+  <id>http://yuyunko.github.com/</id>
+  <author>
+    <name><![CDATA[yuyunko]]></name>
+    <email><![CDATA[i.xxxxxxxxxxxxx.13@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Copy like Dropbox]]></title>
+    <link href="http://yuyunko.github.com/blog/2013/04/20/copy-like-dropbox/"/>
+    <updated>2013-04-20T00:46:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2013/04/20/copy-like-dropbox</id>
+    <content type="html"><![CDATA[<p><a href="https://copy.com?r=OnN4Jm">Copy</a>というDropboxライクなサービスがあるらしい。</p>
+
+<p>しかも初期が5GBで招待からいくと+5GBもらえて10GBになる。</p>
+
+<p>・・・ということで、<a href="https://copy.com?r=OnN4Jm">こちら</a>からいくと私にもあなたにも+5GBでwinwinですよ。</p>
+]]></content>
+  </entry>
+  
+</feed>
