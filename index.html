@@ -7,7 +7,14 @@
 	<meta name="author" content="yuyunko">
 
 	
-	<meta name="description" content="Apr 20th, 2013 dropbox,online,storage Copy Like Dropbox CopyというDropboxライクなサービスがあるらしい。 しかも初期が5GBで招待からいくと+5GBもらえて10GBになる。 ・・・ということで、こちらからいくと私にもあなたにも+ &hellip;">
+	<meta name="description" content="Apr 20th, 2013 sphinx,python,word,docx SphinxでWord出力 sphinxでWord出力出来るらしい。 sphinxにはpython2系がいいっぽいので、homebrewでインストールした
+pythonを使用する。 1
+2
+3
+4
+5
+6
+$ brew &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -88,6 +95,118 @@
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-20T20:59:00+09:00" data-updated="true" itemprop="datePublished">Apr 20<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/sphinx-python-word-docx/'>sphinx,python,word,docx</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/04/20/sphinx%E3%81%A6%E3%82%99word%E5%87%BA%E5%8A%9B/" itemprop="url">SphinxでWord出力</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>sphinxでWord出力出来るらしい。</p>
+
+<p>sphinxにはpython2系がいいっぽいので、homebrewでインストールした
+pythonを使用する。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>brew install python
+</span><span class='line'><span class="nv">$ </span>mkvirtualenv -p /usr/local/bin/python --distribute 2.7.3
+</span><span class='line'><span class="nv">$ </span>workon 2.7.3
+</span><span class='line'><span class="nv">$ </span>pip install sphinx
+</span><span class='line'><span class="nv">$ </span>pip install lxml
+</span><span class='line'><span class="nv">$ </span>sphinx-quickstart
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>で、いろいろ適当に答えて・・・</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>make html
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>でhtml出力出来るのを確認</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>mkdir exts
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>exts
+</span><span class='line'><span class="nv">$ </span>hg clone ssh://hg@bitbucket.org/haraisao/sphinx-docxbuilder
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>それからsphinxの設定ファイルのconf.pyの19行目くらいのをコメントはずして
+書き換え</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#sys.path.insert(0, os.path.abspath(&#39;.&#39;))</span>
+</span><span class='line'><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s">&#39;exts&#39;</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>それから、拡張機能として28行目くらいのとこに追加</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;sphinx-docxbuilder&#39;</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>後はMakefileに以下を追加</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>docx:
+</span><span class='line'>  <span class="k">$(</span>SPHINXBUILD<span class="k">)</span> -b docx <span class="k">$(</span>ALLSPHINXOPTS<span class="k">)</span> <span class="k">$(</span>BUILDDIR<span class="k">)</span>/docx
+</span><span class='line'>  @echo
+</span><span class='line'>  @echo<span class="s2">&quot;Build finished. now you can process the docx file. $(BUILDDIR)/docx.&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで簡単にdocxにコンパイル出来る</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>make docx
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>参考</p>
+
+<p><a href="http://blog.kzfmix.com/entry/1348572220">SphinxでMSWord(docx)ファイルを出力する</a></p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -998,69 +1117,6 @@ WindowsのJScriptをTypeScriptで記述するための設定。
 ライブラリ的なのは、全て &#8220;_lib.ts&#8221; に記述し、実行ファイルソース上で &#8220;\r&#8221; でquickrun ！</p>
 
 <p>&#8220;test.ts&#8221; で quickrunすると、&#8221;_lib.ts&#8221; も含めて、&#8221;test.cmd&#8221; を生成する。</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-31T15:47:00+09:00" data-updated="true" itemprop="datePublished">Dec 31<span>st</span>, 2012</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/octopress-git-theme/'>octopress,git,theme</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2012/12/31/octopress-theme/" itemprop="url">Octopress Theme</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>octopressのテーマをデフォルトから変更する手順</p>
-
-<p>使用出来るテーマ一覧は以下に記載</p>
-
-<p><a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">3rd Party Octopress Themes · imathis/octopress Wiki</a></p>
-
-<p>今回はここにある</p>
-
-<p><a href="https://github.com/roberto/oct2-orange">roberto/oct2-orange · GitHub</a></p>
-
-<p>を使用。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>% <span class="nb">cd </span>octopress
-</span><span class='line'>% git clone git://github.com/roberto/oct2-orange.git .themes/oct2-orange
-</span><span class='line'>% rake install<span class="se">\[</span><span class="s1">&#39;oct2-orange&#39;</span><span class="se">\]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>後は、_config.ymlに asides/nav.html を追加。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>default_asides: <span class="o">[</span>asides/nav.html, asides/recent_posts.html ....
-</span></code></pre></td></tr></table></div></figure>
-
-
-
 
 		
 		

@@ -4,7 +4,7 @@
   <title><![CDATA[yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2013-04-20T07:59:48+09:00</updated>
+  <updated>2013-04-21T08:24:04+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -12,6 +12,92 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[SphinxでWord出力]]></title>
+    <link href="http://yuyunko.github.com/blog/2013/04/20/sphinx%E3%81%A6%E3%82%99word%E5%87%BA%E5%8A%9B/"/>
+    <updated>2013-04-20T20:59:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2013/04/20/sphinxでword出力</id>
+    <content type="html"><![CDATA[<p>sphinxでWord出力出来るらしい。</p>
+
+<p>sphinxにはpython2系がいいっぽいので、homebrewでインストールした
+pythonを使用する。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>brew install python
+</span><span class='line'><span class="nv">$ </span>mkvirtualenv -p /usr/local/bin/python --distribute 2.7.3
+</span><span class='line'><span class="nv">$ </span>workon 2.7.3
+</span><span class='line'><span class="nv">$ </span>pip install sphinx
+</span><span class='line'><span class="nv">$ </span>pip install lxml
+</span><span class='line'><span class="nv">$ </span>sphinx-quickstart
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>で、いろいろ適当に答えて・・・</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>make html
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>でhtml出力出来るのを確認</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>mkdir exts
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>exts
+</span><span class='line'><span class="nv">$ </span>hg clone ssh://hg@bitbucket.org/haraisao/sphinx-docxbuilder
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>それからsphinxの設定ファイルのconf.pyの19行目くらいのをコメントはずして
+書き換え</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#sys.path.insert(0, os.path.abspath(&#39;.&#39;))</span>
+</span><span class='line'><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s">&#39;exts&#39;</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>それから、拡張機能として28行目くらいのとこに追加</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;sphinx-docxbuilder&#39;</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>後はMakefileに以下を追加</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>docx:
+</span><span class='line'>  <span class="k">$(</span>SPHINXBUILD<span class="k">)</span> -b docx <span class="k">$(</span>ALLSPHINXOPTS<span class="k">)</span> <span class="k">$(</span>BUILDDIR<span class="k">)</span>/docx
+</span><span class='line'>  @echo
+</span><span class='line'>  @echo<span class="s2">&quot;Build finished. now you can process the docx file. $(BUILDDIR)/docx.&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで簡単にdocxにコンパイル出来る</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>make docx
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>参考</p>
+
+<p><a href="http://blog.kzfmix.com/entry/1348572220">SphinxでMSWord(docx)ファイルを出力する</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Copy like Dropbox]]></title>

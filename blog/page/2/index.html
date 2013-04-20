@@ -7,7 +7,7 @@
 	<meta name="author" content="yuyunko">
 
 	
-	<meta name="description" content="Dec 31st, 2012 zsh,oh-my-zsh Oh-my-zsh 年末大掃除、zshの設定をoh-my-zshを基準に設定し直した。 oh-my-zshの導入 まず、自分でカスタマイズ出来るようにgithub上で、以下をフォーク robbyrussell/oh-my-zsh · &hellip;">
+	<meta name="description" content="Dec 31st, 2012 octopress,git,theme Octopress Theme octopressのテーマをデフォルトから変更する手順 使用出来るテーマ一覧は以下に記載 3rd Party Octopress Themes · imathis/octopress Wiki &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -88,6 +88,69 @@
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-31T15:47:00+09:00" data-updated="true" itemprop="datePublished">Dec 31<span>st</span>, 2012</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress-git-theme/'>octopress,git,theme</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2012/12/31/octopress-theme/" itemprop="url">Octopress Theme</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>octopressのテーマをデフォルトから変更する手順</p>
+
+<p>使用出来るテーマ一覧は以下に記載</p>
+
+<p><a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">3rd Party Octopress Themes · imathis/octopress Wiki</a></p>
+
+<p>今回はここにある</p>
+
+<p><a href="https://github.com/roberto/oct2-orange">roberto/oct2-orange · GitHub</a></p>
+
+<p>を使用。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>% <span class="nb">cd </span>octopress
+</span><span class='line'>% git clone git://github.com/roberto/oct2-orange.git .themes/oct2-orange
+</span><span class='line'>% rake install<span class="se">\[</span><span class="s1">&#39;oct2-orange&#39;</span><span class="se">\]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>後は、_config.ymlに asides/nav.html を追加。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>default_asides: <span class="o">[</span>asides/nav.html, asides/recent_posts.html ....
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">

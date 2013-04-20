@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: sphinx,python,word,docx | yuyunko's github pages]]></title>
+  <link href="http://yuyunko.github.com/blog/categories/sphinx-python-word-docx/atom.xml" rel="self"/>
+  <link href="http://yuyunko.github.com/"/>
+  <updated>2013-04-21T08:24:04+09:00</updated>
+  <id>http://yuyunko.github.com/</id>
+  <author>
+    <name><![CDATA[yuyunko]]></name>
+    <email><![CDATA[i.xxxxxxxxxxxxx.13@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SphinxでWord出力]]></title>
+    <link href="http://yuyunko.github.com/blog/2013/04/20/sphinx%E3%81%A6%E3%82%99word%E5%87%BA%E5%8A%9B/"/>
+    <updated>2013-04-20T20:59:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2013/04/20/sphinxでword出力</id>
+    <content type="html"><![CDATA[<p>sphinxでWord出力出来るらしい。</p>
+
+<p>sphinxにはpython2系がいいっぽいので、homebrewでインストールした
+pythonを使用する。</p>
+
+<p><code>sh
+$ brew install python
+$ mkvirtualenv -p /usr/local/bin/python --distribute 2.7.3
+$ workon 2.7.3
+$ pip install sphinx
+$ pip install lxml
+$ sphinx-quickstart
+</code>
+で、いろいろ適当に答えて・・・</p>
+
+<p><code>sh
+$ make html
+</code>
+でhtml出力出来るのを確認</p>
+
+<p><code>sh
+$ mkdir exts
+$ cd exts
+$ hg clone ssh://hg@bitbucket.org/haraisao/sphinx-docxbuilder
+</code></p>
+
+<p>それからsphinxの設定ファイルのconf.pyの19行目くらいのをコメントはずして
+書き換え</p>
+
+<p>```python</p>
+
+<h1>sys.path.insert(0, os.path.abspath('.'))</h1>
+
+<p>sys.path.insert(0, os.path.abspath('exts'))
+```</p>
+
+<p>それから、拡張機能として28行目くらいのとこに追加
+<code>python
+extensions = ['sphinx-docxbuilder']
+</code></p>
+
+<p>後はMakefileに以下を追加
+```sh
+docx:</p>
+
+<pre><code>$(SPHINXBUILD) -b docx $(ALLSPHINXOPTS) $(BUILDDIR)/docx
+@echo
+@echo"Build finished. now you can process the docx file. $(BUILDDIR)/docx."
+</code></pre>
+
+<p>```</p>
+
+<p>これで簡単にdocxにコンパイル出来る
+<code>sh
+$ make docx
+</code></p>
+
+<p>参考</p>
+
+<p><a href="http://blog.kzfmix.com/entry/1348572220">SphinxでMSWord(docx)ファイルを出力する</a></p>
+]]></content>
+  </entry>
+  
+</feed>
