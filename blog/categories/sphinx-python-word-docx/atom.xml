@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sphinx,python,word,docx | yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/blog/categories/sphinx-python-word-docx/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2013-04-21T08:24:04+09:00</updated>
+  <updated>2013-04-21T12:40:03+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -65,7 +65,7 @@ docx:</p>
 
 <pre><code>$(SPHINXBUILD) -b docx $(ALLSPHINXOPTS) $(BUILDDIR)/docx
 @echo
-@echo"Build finished. now you can process the docx file. $(BUILDDIR)/docx."
+@echo "Build finished. now you can process the docx file. $(BUILDDIR)/docx."
 </code></pre>
 
 <p>```</p>

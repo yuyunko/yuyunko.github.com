@@ -4,7 +4,7 @@
   <title><![CDATA[yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2013-04-21T08:24:04+09:00</updated>
+  <updated>2013-04-21T12:40:03+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -82,7 +82,7 @@ pythonを使用する。</p>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>docx:
 </span><span class='line'>  <span class="k">$(</span>SPHINXBUILD<span class="k">)</span> -b docx <span class="k">$(</span>ALLSPHINXOPTS<span class="k">)</span> <span class="k">$(</span>BUILDDIR<span class="k">)</span>/docx
 </span><span class='line'>  @echo
-</span><span class='line'>  @echo<span class="s2">&quot;Build finished. now you can process the docx file. $(BUILDDIR)/docx.&quot;</span>
+</span><span class='line'>  @echo <span class="s2">&quot;Build finished. now you can process the docx file. $(BUILDDIR)/docx.&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
