@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vagrant,veewee,ruby | yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/blog/categories/vagrant-veewee-ruby/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2013-04-30T16:58:06+09:00</updated>
+  <updated>2013-04-30T17:07:18+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -142,6 +142,10 @@ $ bundle exec vagrant suspend
 <code>sh
 $ bundle exec vagrant resume
 </code></p>
+
+<p>参考</p>
+
+<p><a href="http://qiita.com/items/3cb756a9c951371a4089">chef-soloで使用するvirtualbox(vagrant)をveeweeを使用して作る #Ruby #chef - Qiita [キータ]</a></p>
 ]]></content>
   </entry>
   
