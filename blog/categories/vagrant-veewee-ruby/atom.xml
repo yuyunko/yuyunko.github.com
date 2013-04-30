@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: vagrant,veewee,ruby | yuyunko's github pages]]></title>
+  <link href="http://yuyunko.github.com/blog/categories/vagrant-veewee-ruby/atom.xml" rel="self"/>
+  <link href="http://yuyunko.github.com/"/>
+  <updated>2013-04-30T16:58:06+09:00</updated>
+  <id>http://yuyunko.github.com/</id>
+  <author>
+    <name><![CDATA[yuyunko]]></name>
+    <email><![CDATA[i.xxxxxxxxxxxxx.13@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[vagrant][veewee][virtualbox]ぶち壊してもいい仮想環境を簡単構築]]></title>
+    <link href="http://yuyunko.github.com/blog/2013/04/30/%5Bvagrant%5D%5Bveewee%5D%5Bvirtualbox%5D%E3%81%B5%E3%82%99%E3%81%A1%E5%A3%8A%E3%81%97%E3%81%A6%E3%82%82%E3%81%84%E3%81%84%E4%BB%AE%E6%83%B3%E7%92%B0%E5%A2%83%E3%82%92%E7%B0%A1%E5%8D%98%E6%A7%8B%E7%AF%89/"/>
+    <updated>2013-04-30T12:34:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2013/04/30/[vagrant][veewee][virtualbox]ぶち壊してもいい仮想環境を簡単構築</id>
+    <content type="html"><![CDATA[<p>家のmacminiが調子悪くなってしまい・・・GWということもあり再インストールすることにした。
+再インストール自体は、「Command + R」で起動して、ディスクユーティリティからDiskを消去して初期化し、
+その後にMountain Lionの再インストールを行い、きれいになった。</p>
+
+<p>せっかくきれいになったので、次に開発環境を作るのは、実機上ではなく、仮想環境上に作ることにする。</p>
+
+<p>最近流行り？の <strong>vagrant</strong> を使ってみることにする。</p>
+
+<p>まずは <em>ruby</em> のインストール。<em>rbenv</em> を使用することにした。</p>
+
+<p><code>sh
+$ brew install readline openssl
+$ brew install rbenv &amp;&amp; brew install ruby-build
+$ CONFIGURE_OPTS="--with-readline-dir=/usr/local --with-openssl-dir=/usr/local" rbenv install 1.9.3-p385
+</code></p>
+
+<p><em>.zshenv</em> に追記</p>
+
+<p>```sh
+if which rbenv > /dev/null; then</p>
+
+<pre><code>eval "$(rbenv init - zsh)"
+[[ -d "${HOME}/.rbenv/completions" ]] &amp;&amp; source ~/.rbenv/completions/rbenv.zsh
+alias gem='rbenv exec gem'
+alias ruby='bundle exec ruby'
+alias rake='bundle exec rake'
+</code></pre>
+
+<p>fi
+```</p>
+
+<p>これで <em>ruby</em> のインストールは完了
+使う <em>ruby</em> を先ほどインストールしたものにしておく</p>
+
+<p><code>sh
+$ rbenv global 1.9.3-p385
+$ rbenv rehash
+</code></p>
+
+<p>お次は <strong>veewee</strong> のダウンロード</p>
+
+<p><code>sh
+$ git clone https://github.com/jedi4ever/veewee.git
+</code></p>
+
+<p>クローンし終わったら、veeweeに必要なgemをbundlerでインストール
+<code>sh
+$ cd veewee
+$ gem install bundler
+</code></p>
+
+<p>Gemfileでvagrantがコメントアウトされているのでコメントじゃなくする。</p>
+
+<p>```ruby
+group :test do</p>
+
+<pre><code>gem "rake"
+gem "vagrant" , "1.0.7"
+#gem "chef"
+#gem "knife-windows"
+</code></pre>
+
+<p>end
+<code>
+インストール
+</code>sh
+$ bundle install
+```</p>
+
+<p>作成するテンプレートの一覧は以下のCommandで見れる
+<code>sh
+$ bundle exec vagrant basebox templates
+</code></p>
+
+<p>今回はfedora18を作成した。
+<code>sh
+$ bundle exec vagrant basebox define 'fedora18' 'Fedora-18-x86_64'
+</code></p>
+
+<p>これで <strong>fedora18</strong> という名前で環境が定義される。</p>
+
+<p>以下のCommandでビルド。途中でISOをダウンロードするか聞かれるので <em>yes</em> と答える。
+<code>sh
+$ bundle exec vagrant basebox build fedora18
+</code></p>
+
+<p>けっこう長い間待つと、作成完了して、sshでログイン出来るようになる。
+初期パスワードは、 <em>vagrant</em>
+<code>sh
+$ ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 7222 -l vagrant 127.0.0.1
+</code></p>
+
+<p>作成したboxのエクスポートは以下のCommandで出来る。
+<code>sh
+$ bundle exec vagrant basebox export fedora18
+</code></p>
+
+<p>これでカレントディレクトリに <em>fedora18.box</em> ファイルが出来る。</p>
+
+<p>次にこの <em>box</em> をvagrantに追加して使っていく。</p>
+
+<p><code>sh
+$ bundle exec vagrant box add 'fedora18' 'fedora18.box'
+$ bundle exec vagrant init fedora18
+</code></p>
+
+<p>これで完了。</p>
+
+<p>起動は
+<code>sh
+$ bundle exec vagrant up
+</code>
+停止は
+<code>sh
+$ bundle exec vagrant halt
+</code>
+一時停止的なのは、
+<code>sh
+$ bundle exec vagrant suspend
+</code>
+復帰は
+<code>sh
+$ bundle exec vagrant resume
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

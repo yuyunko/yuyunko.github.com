@@ -7,14 +7,8 @@
 	<meta name="author" content="yuyunko">
 
 	
-	<meta name="description" content="Apr 20th, 2013 sphinx,python,word,docx SphinxでWord出力 sphinxでWord出力出来るらしい。 sphinxにはpython2系がいいっぽいので、homebrewでインストールした
-pythonを使用する。 1
-2
-3
-4
-5
-6
-$ brew &hellip;">
+	<meta name="description" content="Apr 30th, 2013 vagrant,veewee,ruby [Vagrant][veewee][virtualbox]ぶち壊してもいい仮想環境を簡単構築 家のmacminiが調子悪くなってしまい・・・GWということもあり再インストールすることにした。
+再インストール自体は、「 &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -95,6 +89,208 @@ $ brew &hellip;">
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-30T12:34:00+09:00" data-updated="true" itemprop="datePublished">Apr 30<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/vagrant-veewee-ruby/'>vagrant,veewee,ruby</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/04/30/%5Bvagrant%5D%5Bveewee%5D%5Bvirtualbox%5D%E3%81%B5%E3%82%99%E3%81%A1%E5%A3%8A%E3%81%97%E3%81%A6%E3%82%82%E3%81%84%E3%81%84%E4%BB%AE%E6%83%B3%E7%92%B0%E5%A2%83%E3%82%92%E7%B0%A1%E5%8D%98%E6%A7%8B%E7%AF%89/" itemprop="url">[Vagrant][veewee][virtualbox]ぶち壊してもいい仮想環境を簡単構築</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>家のmacminiが調子悪くなってしまい・・・GWということもあり再インストールすることにした。
+再インストール自体は、「Command + R」で起動して、ディスクユーティリティからDiskを消去して初期化し、
+その後にMountain Lionの再インストールを行い、きれいになった。</p>
+
+<p>せっかくきれいになったので、次に開発環境を作るのは、実機上ではなく、仮想環境上に作ることにする。</p>
+
+<p>最近流行り？の <strong>vagrant</strong> を使ってみることにする。</p>
+
+<p>まずは <em>ruby</em> のインストール。<em>rbenv</em> を使用することにした。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>brew install readline openssl
+</span><span class='line'><span class="nv">$ </span>brew install rbenv <span class="o">&amp;&amp;</span> brew install ruby-build
+</span><span class='line'><span class="nv">$ CONFIGURE_OPTS</span><span class="o">=</span><span class="s2">&quot;--with-readline-dir=/usr/local --with-openssl-dir=/usr/local&quot;</span> rbenv install 1.9.3-p385
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>.zshenv</em> に追記</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="k">if </span>which rbenv &gt; /dev/null; <span class="k">then</span>
+</span><span class='line'><span class="k">    </span><span class="nb">eval</span> <span class="s2">&quot;$(rbenv init - zsh)&quot;</span>
+</span><span class='line'>    <span class="o">[[</span> -d <span class="s2">&quot;${HOME}/.rbenv/completions&quot;</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">source</span> ~/.rbenv/completions/rbenv.zsh
+</span><span class='line'>    <span class="nb">alias </span><span class="nv">gem</span><span class="o">=</span><span class="s1">&#39;rbenv exec gem&#39;</span>
+</span><span class='line'>    <span class="nb">alias </span><span class="nv">ruby</span><span class="o">=</span><span class="s1">&#39;bundle exec ruby&#39;</span>
+</span><span class='line'>    <span class="nb">alias </span><span class="nv">rake</span><span class="o">=</span><span class="s1">&#39;bundle exec rake&#39;</span>
+</span><span class='line'><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで <em>ruby</em> のインストールは完了
+使う <em>ruby</em> を先ほどインストールしたものにしておく</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>rbenv global 1.9.3-p385
+</span><span class='line'><span class="nv">$ </span>rbenv rehash
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>お次は <strong>veewee</strong> のダウンロード</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>git clone https://github.com/jedi4ever/veewee.git
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>クローンし終わったら、veeweeに必要なgemをbundlerでインストール</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span><span class="nb">cd </span>veewee
+</span><span class='line'><span class="nv">$ </span>gem install bundler
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Gemfileでvagrantがコメントアウトされているのでコメントじゃなくする。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:test</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">gem</span> <span class="s2">&quot;rake&quot;</span>
+</span><span class='line'>    <span class="n">gem</span> <span class="s2">&quot;vagrant&quot;</span> <span class="p">,</span> <span class="s2">&quot;1.0.7&quot;</span>
+</span><span class='line'>    <span class="c1">#gem &quot;chef&quot;</span>
+</span><span class='line'>    <span class="c1">#gem &quot;knife-windows&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>インストール</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>作成するテンプレートの一覧は以下のCommandで見れる</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>vagrant basebox templates
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>今回はfedora18を作成した。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>vagrant basebox define <span class="s1">&#39;fedora18&#39;</span> <span class="s1">&#39;Fedora-18-x86_64&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで <strong>fedora18</strong> という名前で環境が定義される。</p>
+
+<p>以下のCommandでビルド。途中でISOをダウンロードするか聞かれるので <em>yes</em> と答える。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>vagrant basebox build fedora18
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>けっこう長い間待つと、作成完了して、sshでログイン出来るようになる。
+初期パスワードは、 <em>vagrant</em></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>ssh -o <span class="nv">UserKnownHostsFile</span><span class="o">=</span>/dev/null -o <span class="nv">StrictHostKeyChecking</span><span class="o">=</span>no -p 7222 -l vagrant 127.0.0.1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>作成したboxのエクスポートは以下のCommandで出来る。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>vagrant basebox <span class="nb">export </span>fedora18
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これでカレントディレクトリに <em>fedora18.box</em> ファイルが出来る。</p>
+
+<p>次にこの <em>box</em> をvagrantに追加して使っていく。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>vagrant box add <span class="s1">&#39;fedora18&#39;</span> <span class="s1">&#39;fedora18.box&#39;</span>
+</span><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>vagrant init fedora18
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで完了。</p>
+
+<p>起動は</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>vagrant up
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>停止は</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>vagrant halt
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一時停止的なのは、</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>vagrant <span class="nb">suspend</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>復帰は</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>vagrant resume
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -985,138 +1181,6 @@ JScriptとして実行するためのヘッダファイルを付加していま�
 </span><span class='line'>@<span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-27T02:30:00+09:00" data-updated="true" itemprop="datePublished">Jan 27<span>th</span>, 2013</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/wsh-quickrun-vim/'>wsh,quickrun,vim</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2013/01/27/vim-%2B-quickrun-%2B-wsh/" itemprop="url">Vim + Quickrun + Wsh + Typescript</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>quickrunの設定をした。</p>
-
-<div><script src='https://gist.github.com/4646785.js'></script>
-<noscript><pre><code>NeoBundle 'thinca/vim-quickrun.git', {
-            \ 'depends' : ['Shougo/vimproc', 'Shougo/unite.vim.git', 'osyo-manga/unite-quickfix', 'osyo-manga/shabadou.vim', 'jceb/vim-hier']
-            \ }
-
-&quot;&quot; vim-quickrun {{{
-&quot; quickrunの最終的なコマンドを出力する {{{
-&quot; http://d.hatena.ne.jp/osyo-manga/searchdiary?word=quickrun
-let s:hook = {
-\   &quot;name&quot; : &quot;output_command&quot;,
-\   &quot;kind&quot; : &quot;hook&quot;,
-\   &quot;config&quot; : {
-\       &quot;enable&quot; : 0,
-\       &quot;log&quot; : 0
-\   }
-\}
-
-function! s:hook.on_ready(session, context)
-    HierClear
-    for command in a:session.commands
-        execute self.config.log ? &quot;echom command&quot; : &quot;echo command&quot;
-    endfor
-endfunction
-
-call quickrun#module#register(s:hook, 1)
-unlet s:hook
-&quot; }}}
-
-&quot; TypeScript コンパイル後にヘッダ等を追加 {{{
-let s:hook = {
-            \ &quot;name&quot; : &quot;js2cmd&quot;,
-            \ &quot;kind&quot; : &quot;hook&quot;,
-            \ &quot;config&quot; : {
-            \       &quot;enable&quot; : 0
-            \  }
-            \ }
-
-function! s:hook.on_success(session, context)
-    let list = []
-    call add(list, &quot;@if(0)==(0) ECHO OFF\r&quot;)
-    call add(list, &quot;    pushd \&quot;%~dp0\&quot; &gt; nul\r&quot;)
-    call add(list, &quot;    CScript.exe //NoLogo //E:JScript \&quot;%~f0\&quot; %*\r&quot;)
-    call add(list, &quot;    popd &gt; nul\r&quot;)
-    call add(list, &quot;pause\r&quot;)
-    call add(list, &quot;GOTO :EOF\r&quot;)
-    call add(list, &quot;@end\r&quot;)
-    call add(list, &quot;\r&quot;)
-    let inJs = fnamemodify(a:session.config.srcfile, &quot;:p:r&quot;) . '.js'
-    let outCmd = fnamemodify(a:session.config.srcfile, &quot;:p:r&quot;) . '.cmd'
-    echom inJs
-    echom outCmd
-    let utf8List = list + readfile(inJs, 'b')
-    let cp932List = []
-    for line in utf8List
-        call add(cp932List, iconv(line, &quot;UTF-8&quot;, &quot;CP932&quot;))
-    endfor
-    call writefile(cp932List, outCmd, 'b')
-endfunction
-
-call quickrun#module#register(s:hook, 1)
-unlet s:hook
-&quot; }}}
-
-let g:quickrun_config = {}
-let g:quickrun_config = {
-            \   &quot;_&quot; : {
-            \       &quot;hook/output_command/enable&quot; : 1,
-            \       &quot;hook/close_unite_quickfix/enable_hook_loaded&quot; : 1,
-            \       &quot;hook/unite_quickfix/enable_failure&quot; : 1,
-            \       &quot;hook/close_quickfix/enable_exit&quot; : 1,
-            \       &quot;hook/close_buffer/enable_failure&quot; : 1,
-            \       &quot;hook/close_buffer/enable_empty_data&quot; : 1,
-            \       &quot;hook/echo/enable&quot; : 1,
-            \       &quot;hook/echo/output_success&quot; : &quot;success!!!&quot;,
-            \       &quot;hook/echo/output_failure&quot; : &quot;failure...&quot;,
-            \       &quot;outputter&quot; : &quot;multi:buffer:quickfix&quot;,
-            \       &quot;outputter/buffer/split&quot; : &quot;:botright 8sp&quot;,
-            \       &quot;runner&quot; : &quot;vimproc&quot;,
-            \       &quot;runner/vimproc/updatetime&quot; : 40,
-            \   },
-            \ &quot;typescript&quot; : {
-            \       &quot;commad&quot; : &quot;tsc&quot;,
-            \       &quot;cmdopt&quot; : &quot;--nolib --out&quot;,
-            \       &quot;exec&quot;   : &quot;%c %s _lib.ts %s %o %s:p:r.js&quot;,
-            \       &quot;hook/js2cmd/enable&quot; : 1,
-            \       &quot;hook/output_command/log&quot; : 1,
-            \   }
-            \ }
-&quot;}}}</code></pre></noscript></div>
-
-
-<p>quickrunの設定には &#8216;osyo-manga/shabadou.vim&#8217; がとても便利です。
-WindowsのJScriptをTypeScriptで記述するための設定。
-ライブラリ的なのは、全て &#8220;_lib.ts&#8221; に記述し、実行ファイルソース上で &#8220;\r&#8221; でquickrun ！</p>
-
-<p>&#8220;test.ts&#8221; で quickrunすると、&#8221;_lib.ts&#8221; も含めて、&#8221;test.cmd&#8221; を生成する。</p>
 
 		
 		
