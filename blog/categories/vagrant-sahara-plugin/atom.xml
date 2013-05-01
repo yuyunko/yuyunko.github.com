@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: vagrant,sahara,plugin | yuyunko's github pages]]></title>
+  <link href="http://yuyunko.github.com/blog/categories/vagrant-sahara-plugin/atom.xml" rel="self"/>
+  <link href="http://yuyunko.github.com/"/>
+  <updated>2013-05-01T09:39:08+09:00</updated>
+  <id>http://yuyunko.github.com/</id>
+  <author>
+    <name><![CDATA[yuyunko]]></name>
+    <email><![CDATA[i.xxxxxxxxxxxxx.13@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[vagrant][plugin][sahara] vagrant1.1系でのplugin追加方法]]></title>
+    <link href="http://yuyunko.github.com/blog/2013/05/01/%5Bvagrant%5D%5Bplugin%5D%5Bsahara%5D/"/>
+    <updated>2013-05-01T09:31:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2013/05/01/[vagrant][plugin][sahara]</id>
+    <content type="html"><![CDATA[<p>1.0系だと <em>gem</em> で入れるっぽいけど、
+1.1系だと、
+<code>sh
+$ vagrant plugin install &lt;plugin名&gt;
+</code>
+で入れれるっぽい。</p>
+
+<p>sandoboxで簡単にrollback、commit出来るpluginの <strong>sahara</strong> を導入するなら、</p>
+
+<p><code>sh
+$ vagrant plugin install sahara
+</code></p>
+
+<p>でおｋ</p>
+]]></content>
+  </entry>
+  
+</feed>
