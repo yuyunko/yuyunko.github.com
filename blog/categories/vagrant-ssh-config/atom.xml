@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: vagrant,ssh-config | yuyunko's github pages]]></title>
+  <link href="http://yuyunko.github.com/blog/categories/vagrant-ssh-config/atom.xml" rel="self"/>
+  <link href="http://yuyunko.github.com/"/>
+  <updated>2013-05-01T10:25:12+09:00</updated>
+  <id>http://yuyunko.github.com/</id>
+  <author>
+    <name><![CDATA[yuyunko]]></name>
+    <email><![CDATA[i.xxxxxxxxxxxxx.13@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[vagrant][ssh] ローカル以外からのssh接続]]></title>
+    <link href="http://yuyunko.github.com/blog/2013/05/01/%5Bvagrant%5D%5Bssh%5D-%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E4%BB%A5%E5%A4%96%E3%81%8B%E3%82%89%E3%81%AEssh%E6%8E%A5%E7%B6%9A/"/>
+    <updated>2013-05-01T09:48:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2013/05/01/[vagrant][ssh]-ローカル以外からのssh接続</id>
+    <content type="html"><![CDATA[<p>vagrantを導入して仮想環境を作ったのは、macmini上。
+しかし、普段使用しているのはmacbook airで、airからmacminiにsshして使用している。</p>
+
+<p>つまり、</p>
+
+<p>air -> macmini -> vagrant
+とsshするのはめんどくさいので、
+air -> vagrant
+と接続したい。</p>
+
+<p>vagrantでは、コマンドで簡単にsshの設定ファイルを作成してくれるみたい。
+macmini上で、
+<code>sh
+$ vagrant ssh-config --host centos64 &gt; ssh-config
+</code></p>
+
+<p>この設定ファイルをairにコピー</p>
+
+<p>air上で、
+<code>sh
+$ cat ssh-config &gt;&gt; ~/.ssh/config
+</code></p>
+
+<p>```sh
+$ cat ~/.ssh/config
+Host centos64</p>
+
+<pre><code>HostName 127.0.0.1
+User vagrant
+Port 2222
+UserKnownHostsFile /dev/null
+StrictHostKeyChecking no
+PasswordAuthentication no
+IdentityFile "/Users/user/.vagrant.d/insecure_private_key"
+IdentitiesOnly yes
+LogLevel FATAL
+</code></pre>
+
+<p>```</p>
+
+<p>上記で、HostName が <em>127.0.0.1</em> となっているので、それをmacminiのアドレスに書き換え。</p>
+
+<p>それからIdentityFileが必要なので、macminiからairにコピーしてきて、パスを書き換え。</p>
+
+<p>これで、airから、以下のコマンドでつながる。</p>
+
+<p><code>sh
+$ ssh centos64
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>
