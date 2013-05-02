@@ -4,7 +4,7 @@
   <title><![CDATA[yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2013-05-01T10:25:12+09:00</updated>
+  <updated>2013-05-02T12:08:54+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -89,9 +89,9 @@ macmini上で、</p>
   
   <entry>
     <title type="html"><![CDATA[[vagrant][plugin][sahara] vagrant1.1系でのplugin追加方法]]></title>
-    <link href="http://yuyunko.github.com/blog/2013/05/01/%5Bvagrant%5D%5Bplugin%5D%5Bsahara%5D/"/>
+    <link href="http://yuyunko.github.com/blog/2013/05/01/%5Bvagrant%5D%5Bplugin%5D%5Bsahara%5Dvagrant1.1%E7%B3%BB%E3%81%A6%E3%82%99%E3%81%AEplugin%E8%BF%BD%E5%8A%A0%E6%96%B9%E6%B3%95/"/>
     <updated>2013-05-01T09:31:00+09:00</updated>
-    <id>http://yuyunko.github.com/blog/2013/05/01/[vagrant][plugin][sahara]</id>
+    <id>http://yuyunko.github.com/blog/2013/05/01/[vagrant][plugin][sahara]vagrant1.1系でのplugin追加方法</id>
     <content type="html"><![CDATA[<p>1.0系だと <em>gem</em> で入れるっぽいけど、
 1.1系だと、</p>
 
@@ -110,6 +110,29 @@ macmini上で、</p>
 
 
 <p>でおｋ</p>
+
+<p>・・・と思ったら、現在はまだ <strong>sahara</strong> は1.1系に対応してないみたい。</p>
+
+<p>でも、さすが素晴らしい人がいるもんで、対応してくださっています。↓↓↓</p>
+
+<p><a href="http://www.ryuzee.com/contents/blog/6555">Vagrantの必須プラグインSaharaをVagrant 1.1に対応させました | Ryuzee.com</a></p>
+
+<p>導入方法は、(まぁ上記のページを見ればいいんだけど、自分の忘備録用に・・・</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>git clone https://github.com/ryuzee/sahara.git
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>sahara
+</span><span class='line'><span class="nv">$ </span>bundle install --path vender/bundle
+</span><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>rake build
+</span><span class='line'><span class="nv">$ </span>vagrant plugin install pkg/sahara-0.0.14.gem
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで使えるようになります。</p>
 ]]></content>
   </entry>
   

@@ -19,7 +19,7 @@ $ vagrant plugin install &lt;plugin名&gt; で入れれるっぽい。 &hellip;"
 
 	<link href="/atom.xml" rel="alternate" title="yuyunko's github pages" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://yuyunko.github.com/blog/2013/05/01/%5Bvagrant%5D%5Bplugin%5D%5Bsahara%5D/">
+	<link rel="canonical" href="http://yuyunko.github.com/blog/2013/05/01/%5Bvagrant%5D%5Bplugin%5D%5Bsahara%5Dvagrant1.1%E7%B3%BB%E3%81%A6%E3%82%99%E3%81%AEplugin%E8%BF%BD%E5%8A%A0%E6%96%B9%E6%B3%95/">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -108,6 +108,29 @@ $ vagrant plugin install &lt;plugin名&gt; で入れれるっぽい。 &hellip;"
 
 
 <p>でおｋ</p>
+
+<p>・・・と思ったら、現在はまだ <strong>sahara</strong> は1.1系に対応してないみたい。</p>
+
+<p>でも、さすが素晴らしい人がいるもんで、対応してくださっています。↓↓↓</p>
+
+<p><a href="http://www.ryuzee.com/contents/blog/6555">Vagrantの必須プラグインSaharaをVagrant 1.1に対応させました | Ryuzee.com</a></p>
+
+<p>導入方法は、(まぁ上記のページを見ればいいんだけど、自分の忘備録用に・・・</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>git clone https://github.com/ryuzee/sahara.git
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>sahara
+</span><span class='line'><span class="nv">$ </span>bundle install --path vender/bundle
+</span><span class='line'><span class="nv">$ </span>bundle <span class="nb">exec </span>rake build
+</span><span class='line'><span class="nv">$ </span>vagrant plugin install pkg/sahara-0.0.14.gem
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで使えるようになります。</p>
 </div>
 
 </article>
@@ -157,8 +180,8 @@ Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Sha
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://yuyunko.github.com/blog/2013/05/01/%5Bvagrant%5D%5Bplugin%5D%5Bsahara%5D/';
-        var disqus_url = 'http://yuyunko.github.com/blog/2013/05/01/%5Bvagrant%5D%5Bplugin%5D%5Bsahara%5D/';
+        var disqus_identifier = 'http://yuyunko.github.com/blog/2013/05/01/%5Bvagrant%5D%5Bplugin%5D%5Bsahara%5Dvagrant1.1%E7%B3%BB%E3%81%A6%E3%82%99%E3%81%AEplugin%E8%BF%BD%E5%8A%A0%E6%96%B9%E6%B3%95/';
+        var disqus_url = 'http://yuyunko.github.com/blog/2013/05/01/%5Bvagrant%5D%5Bplugin%5D%5Bsahara%5Dvagrant1.1%E7%B3%BB%E3%81%A6%E3%82%99%E3%81%AEplugin%E8%BF%BD%E5%8A%A0%E6%96%B9%E6%B3%95/';
         var disqus_script = 'embed.js';
       
     (function () {
