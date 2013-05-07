@@ -7,7 +7,7 @@
 	<meta name="author" content="yuyunko">
 
 	
-	<meta name="description" content="Feb 18th, 2013 vim,mac,iterm KeyRemap4MacBook-iTerm2-MacVim macでターミナルを使用する場合、iTerm2が便利。 しかし、iTerm2上のvimで日本語を使う時、Insertモードから抜けると自動でIMEを &hellip;">
+	<meta name="description" content="Feb 27th, 2013 coffeescript,vim,quickrun Vim Quickrunでcoffeescriptコンパイル vimのquickrunでcoffeescriptをコンパイルする設定 複数ファイルをまとめてコンパイルしたいので、依存するファイルは、ファイルの &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -88,6 +88,71 @@
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-27T23:47:00+09:00" data-updated="true" itemprop="datePublished">Feb 27<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/coffeescript-vim-quickrun/'>coffeescript,vim,quickrun</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/02/27/coffee-script/" itemprop="url">Vim Quickrunでcoffeescriptコンパイル</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>vimのquickrunでcoffeescriptをコンパイルする設定</p>
+
+<div><script src='https://gist.github.com/5048458.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+
+
+<p>複数ファイルをまとめてコンパイルしたいので、依存するファイルは、ファイルの
+先頭らへんで擬似的に&#8217;import&#8217;と記述しておく。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1"># import &#39;_lib/_lib.coffee&#39;</span>
+</span><span class='line'><span class="c1"># import &#39;_lib/FileSystem.coffee&#39;</span>
+</span><span class='line'><span class="c1"># import &#39;_lib/ShellSystem.coffee&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;hello&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>みたいに記述された &#8216;test.coffee&#8217;というソース上で&#8217;&lt;leader>r&#8217;
+実行すると、</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>coffee -j test.js -cb _lib/_lib.coffee _lib/FileSystem.coffee _lib/ShellSystem.coffee test.coffee
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>が実行される。</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">

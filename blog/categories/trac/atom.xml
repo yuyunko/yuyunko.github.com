@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: trac | yuyunko's github pages]]></title>
+  <link href="http://yuyunko.github.com/blog/categories/trac/atom.xml" rel="self"/>
+  <link href="http://yuyunko.github.com/"/>
+  <updated>2013-05-08T05:52:03+09:00</updated>
+  <id>http://yuyunko.github.com/</id>
+  <author>
+    <name><![CDATA[yuyunko]]></name>
+    <email><![CDATA[i.xxxxxxxxxxxxx.13@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[[Trac]ユーザーへのTRAC_ADMIN権限の付与]]></title>
+    <link href="http://yuyunko.github.com/blog/2013/05/07/%5Btrac%5D%E3%83%A6%E3%83%BC%E3%82%B5%E3%82%99%E3%83%BC%E3%81%B8%E3%81%AEtrac_admin%E6%A8%A9%E9%99%90%E3%81%AE%E4%BB%98%E4%B8%8E/"/>
+    <updated>2013-05-07T23:53:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2013/05/07/[trac]ユーザーへのtrac_admin権限の付与</id>
+    <content type="html"><![CDATA[<p>Windows 環境でのTracでの管理者権限の付与</p>
+
+<p>```sh</p>
+
+<blockquote><p>trac-admin D:\TracLight\projects\trac&lt;ProjectName> permission add <UserId> TRAC_ADMIN
+```</p></blockquote>
+
+<p>参考</p>
+
+<p><a href="http://d.hatena.ne.jp/greennoah/20090724/1248460346">Tracのユーザに管理者権限をつける - greennoahの日記</a></p>
+]]></content>
+  </entry>
+  
+</feed>

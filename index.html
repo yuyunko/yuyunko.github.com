@@ -7,8 +7,8 @@
 	<meta name="author" content="yuyunko">
 
 	
-	<meta name="description" content="May 1st, 2013 vagrant,ssh-config [Vagrant][ssh] ローカル以外からのssh接続 vagrantを導入して仮想環境を作ったのは、macmini上。
-しかし、普段使用しているのはmacbook airで、airからmacminiにsshして使用している &hellip;">
+	<meta name="description" content="May 7th, 2013 trac [Trac]ユーザーへのTRAC_ADMIN権限の付与 Windows 環境でのTracでの管理者権限の付与 1
+&gt; trac-admin D:\TracLight\projects\trac\&lt;ProjectName&gt; &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -89,6 +89,50 @@
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-07T23:53:00+09:00" data-updated="true" itemprop="datePublished">May 7<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/trac/'>trac</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/05/07/%5Btrac%5D%E3%83%A6%E3%83%BC%E3%82%B5%E3%82%99%E3%83%BC%E3%81%B8%E3%81%AEtrac_admin%E6%A8%A9%E9%99%90%E3%81%AE%E4%BB%98%E4%B8%8E/" itemprop="url">[Trac]ユーザーへのTRAC_ADMIN権限の付与</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Windows 環境でのTracでの管理者権限の付与</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>&gt; trac-admin D:<span class="se">\T</span>racLight<span class="se">\p</span>rojects<span class="se">\t</span>rac<span class="se">\&lt;</span>ProjectName&gt; permission add &lt;UserId&gt; TRAC_ADMIN
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>参考</p>
+
+<p><a href="http://d.hatena.ne.jp/greennoah/20090724/1248460346">Tracのユーザに管理者権限をつける - greennoahの日記</a></p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -979,11 +1023,13 @@ pythonを使用する。</p>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
+<span class='line-number'>8</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span><span class="nb">source</span> ~/.zshenv
 </span><span class='line'><span class="nv">$ </span>mkdir ~/.distribute_setup_py
 </span><span class='line'><span class="nv">$ </span><span class="nb">cd</span> ~/.distribute_setup_py
 </span><span class='line'><span class="nv">$ </span>curl -O http://python-distribute.org/distribute_setup.py
 </span><span class='line'><span class="nv">$ </span>python distribute_setup.py
+</span><span class='line'><span class="nv">$ </span><span class="nb">source</span> ~/.zshenv
 </span><span class='line'><span class="nv">$ </span>easy_install pip
 </span><span class='line'><span class="nv">$ </span>pip install virtualenv virtualenvwrapper
 </span></code></pre></td></tr></table></div></figure>
@@ -1012,71 +1058,6 @@ easy_install と pip を入れてくれる。</p>
 <p><a href="http://krakenbeal.blogspot.jp/2012/05/pythonz-python-323.html">pythonz で python 3.2.3 を インストール - KRAKENBEAL RECORDS</a></p>
 
 <p><a href="http://memo.fifnel.com/2012/09/191/">pythonz + virtualenv + virtualenvwrapper でPython開発環境を作ってみる on MacOSX10.8 | ふぃふメモ</a></p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-27T23:47:00+09:00" data-updated="true" itemprop="datePublished">Feb 27<span>th</span>, 2013</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/coffeescript-vim-quickrun/'>coffeescript,vim,quickrun</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2013/02/27/coffee-script/" itemprop="url">Vim Quickrunでcoffeescriptコンパイル</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>vimのquickrunでcoffeescriptをコンパイルする設定</p>
-
-<div><script src='https://gist.github.com/5048458.js'></script>
-<noscript><pre><code></code></pre></noscript></div>
-
-
-<p>複数ファイルをまとめてコンパイルしたいので、依存するファイルは、ファイルの
-先頭らへんで擬似的に&#8217;import&#8217;と記述しておく。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1"># import &#39;_lib/_lib.coffee&#39;</span>
-</span><span class='line'><span class="c1"># import &#39;_lib/FileSystem.coffee&#39;</span>
-</span><span class='line'><span class="c1"># import &#39;_lib/ShellSystem.coffee&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;hello&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>みたいに記述された &#8216;test.coffee&#8217;というソース上で&#8217;&lt;leader>r&#8217;
-実行すると、</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>coffee -j test.js -cb _lib/_lib.coffee _lib/FileSystem.coffee _lib/ShellSystem.coffee test.coffee
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>が実行される。</p>
 
 		
 		

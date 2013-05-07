@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mac,python,pythonz | yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/blog/categories/mac-python-pythonz/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2013-05-02T12:08:54+09:00</updated>
+  <updated>2013-05-08T05:52:03+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -63,6 +63,7 @@ $ mkdir ~/.distribute_setup_py
 $ cd ~/.distribute_setup_py
 $ curl -O http://python-distribute.org/distribute_setup.py
 $ python distribute_setup.py
+$ source ~/.zshenv
 $ easy_install pip
 $ pip install virtualenv virtualenvwrapper
 </code>
