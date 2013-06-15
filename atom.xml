@@ -4,7 +4,7 @@
   <title><![CDATA[yuyunko's github pages]]></title>
   <link href="http://yuyunko.github.com/atom.xml" rel="self"/>
   <link href="http://yuyunko.github.com/"/>
-  <updated>2013-05-21T22:20:35+09:00</updated>
+  <updated>2013-06-15T22:39:25+09:00</updated>
   <id>http://yuyunko.github.com/</id>
   <author>
     <name><![CDATA[yuyunko]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ブログ移転]]></title>
+    <link href="http://yuyunko.github.com/blog/2013/06/15/%E3%83%95%E3%82%99%E3%83%AD%E3%82%AF%E3%82%99%E7%A7%BB%E8%BB%A2/"/>
+    <updated>2013-06-15T22:36:00+09:00</updated>
+    <id>http://yuyunko.github.com/blog/2013/06/15/ブログ移転</id>
+    <content type="html"><![CDATA[<p>Tinkerer に変更します！</p>
+
+<p>以降は <a href="http://yuyunko.bitbucket.org/blog/html/index.html">ホーム — yuyunko&#8217;s blog</a> で！</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[[TideSDK] マルチプラットフォームなアプリ作成]]></title>
@@ -1804,40 +1815,6 @@ function ExcelSystem() {
 <p><a href="http://d.hatena.ne.jp/miya2000/20090823/p0">JScript でハマる日々 - m2</a></p>
 
 <p><a href="http://www.h4.dion.ne.jp/~unkai/js/index.html">Javascriptプログラミング</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[zsh でautojump]]></title>
-    <link href="http://yuyunko.github.com/blog/2012/07/15/zsh-autojump/"/>
-    <updated>2012-07-15T09:09:00+09:00</updated>
-    <id>http://yuyunko.github.com/blog/2012/07/15/zsh-autojump</id>
-    <content type="html"><![CDATA[<p>zshでautojumpが非常に便利だということを知った。</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>brew install autojump
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>でインストール</p>
-
-<div><script src='https://gist.github.com/3114532.js'></script>
-<noscript><pre><code>brew install autojump
-</code></pre></noscript></div>
-
-
-<p>を.zshrcに追記</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>j ディレクトリの一部<span class="o">[</span>tab<span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>で補完。</p>
-
-<p>参考</p>
-
-<p><a href="http://blog.glidenote.com/blog/2012/02/29/autojump-zsh/">zsh使いなら効率改善のため知っておきたいAUTOJUMP - Glide Note - グライドノート</a></p>
 ]]></content>
   </entry>
   
